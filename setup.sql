@@ -1,3 +1,4 @@
+-- CS 121 Final Project
 -- Setup file for meal tracking app database
 
 -- DROP TABLE commands:
@@ -58,11 +59,16 @@ CREATE TABLE meal_log (
 
 CREATE TABLE recipes (
     recipe_id INT AUTO_INCREMENT,
-    user_id INT,
-    recipe_name VARCHAR(100) NOT NULL,
-    recipe_desc VARCHAR(500) NOT NULL,
+    recipe_name VARCHAR(200) NOT NULL,
+    cuisine VARCHAR(100),
+    course VARCHAR(100),
+    prep_time INT, -- prep time in minutes
+    cook_time INT, -- cook time in minutes
+    ingredients TEXT NOT NULL,
     instructions TEXT NOT NULL,
+    num_ratings INT DEFAULT 0,
     avg_rating FLOAT,
+    user_id INT,
     PRIMARY KEY (recipe_id),
     FOREIGN KEY (user_id) REFERENCES users(user_id)
         ON DELETE CASCADE 
@@ -82,3 +88,9 @@ CREATE TABLE ratings (
         ON DELETE CASCADE 
         ON UPDATE CASCADE
 );
+
+-- INDEXES:
+-- Index to make looking up recipe average ratings faster
+CREATE INDEX idx_avg_rating ON recipes(avg_rating);
+-- Index to make looking up user ratings faster
+CREATE INDEX idx_rating ON ratings(rating);
