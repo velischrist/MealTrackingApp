@@ -21,8 +21,8 @@ CREATE TABLE users (
 
 CREATE TABLE goals (
     user_id INT,
-    goal_type ENUM('calories', 'protein', 'fat', 'sugar'),
-    target INT NOT NULL,
+    goal_type ENUM('calories', 'protein', 'fat', 'sugar'), 
+    target INT NOT NULL, -- in units per day
     PRIMARY KEY (user_id, goal_type),
     FOREIGN KEY (user_id) REFERENCES users(user_id)
         ON DELETE CASCADE
@@ -32,7 +32,7 @@ CREATE TABLE goals (
 CREATE TABLE meals (
     meal_id INT AUTO_INCREMENT,
     user_id INT NOT NULL,
-    meal_name VARCHAR(100) NOT NULL,
+    meal_name VARCHAR(200) NOT NULL,
     calories INT NOT NULL,
     protein INT,
     fat INT,
@@ -47,7 +47,8 @@ CREATE TABLE meal_log (
     user_id INT, 
     meal_id INT, 
     meal_date DATE, 
-    meal_type ENUM('breakfast', 'lunch', 'dinner', 'snack') NOT NULL,
+    -- meal_type ENUM('breakfast', 'lunch', 'dinner', 'snack') NOT NULL,
+    meal_type VARCHAR(50) NOT NULL,
     PRIMARY KEY (user_id, meal_id, meal_date),
     FOREIGN KEY (user_id) REFERENCES users(user_id)
         ON DELETE CASCADE 
@@ -67,7 +68,7 @@ CREATE TABLE recipes (
     ingredients TEXT NOT NULL,
     instructions TEXT NOT NULL,
     num_ratings INT DEFAULT 0,
-    avg_rating FLOAT,
+    avg_rating NUMERIC(3, 2),
     user_id INT,
     PRIMARY KEY (recipe_id),
     FOREIGN KEY (user_id) REFERENCES users(user_id)
