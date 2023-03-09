@@ -5,16 +5,16 @@
 
 SET GLOBAL local_infile = 1; 
 
-LOAD DATA LOCAL INFILE '/Users/velis.christ/Documents/Caltech/Winter2023/CS121/FinalProject/users.csv' INTO TABLE users
+LOAD DATA LOCAL INFILE 'data/users.csv' INTO TABLE users
 FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
 
-LOAD DATA LOCAL INFILE '/Users/velis.christ/Documents/Caltech/Winter2023/CS121/FinalProject/food_recipes.csv' INTO TABLE recipes
+LOAD DATA LOCAL INFILE 'data/food_recipes.csv' INTO TABLE recipes
 FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\r\n' IGNORE 1 ROWS
 (recipe_id, recipe_name, cuisine, course, @prep_time, @cook_time, ingredients, instructions)
 SET prep_time = NULLIF(@prep_time, ''),
     cook_time = NULLIF(@cook_time, '');
 
-LOAD DATA LOCAL INFILE '/Users/velis.christ/Documents/Caltech/Winter2023/CS121/FinalProject/ratings.csv' INTO TABLE ratings
+LOAD DATA LOCAL INFILE 'data/ratings.csv' INTO TABLE ratings
 FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
 
 -- Update the average rating now that we have data about the ratings
@@ -23,12 +23,12 @@ UPDATE recipes SET avg_rating = (
     WHERE ratings.recipe_id = recipes.recipe_id
 );
 
-LOAD DATA LOCAL INFILE '/Users/velis.christ/Documents/Caltech/Winter2023/CS121/FinalProject/goals.csv' INTO TABLE goals
+LOAD DATA LOCAL INFILE 'data/goals.csv' INTO TABLE goals
 FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
 
-LOAD DATA LOCAL INFILE '/Users/velis.christ/Documents/Caltech/Winter2023/CS121/FinalProject/meals.csv' INTO TABLE meals
+LOAD DATA LOCAL INFILE 'data/meals.csv' INTO TABLE meals
 FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
 
-LOAD DATA LOCAL INFILE '/Users/velis.christ/Documents/Caltech/Winter2023/CS121/FinalProject/meal_log.csv' INTO TABLE meal_log
+LOAD DATA LOCAL INFILE 'data/meal_log.csv' INTO TABLE meal_log
 FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
 
