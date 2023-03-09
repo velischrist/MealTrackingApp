@@ -69,7 +69,7 @@ CREATE TABLE recipes (
     instructions TEXT NOT NULL,
     num_ratings INT DEFAULT 0,
     avg_rating NUMERIC(3, 2),
-    user_id INT,
+    user_id INT, -- User who created the recipe
     PRIMARY KEY (recipe_id),
     FOREIGN KEY (user_id) REFERENCES users(user_id)
         ON DELETE CASCADE 
@@ -77,7 +77,7 @@ CREATE TABLE recipes (
 );
 
 CREATE TABLE ratings (
-    user_id INT NOT NULL,
+    user_id INT NOT NULL, -- User who rated the recipe
     recipe_id INT NOT NULL,
     rating INT NOT NULL,
     CHECK (rating >= 1 AND rating <= 5),
