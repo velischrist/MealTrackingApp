@@ -1,4 +1,4 @@
--- CS 121 Final Project
+-- CS 121 Winter 2023 Final Project
 -- Setup file for meal tracking app database
 
 -- DROP TABLE commands:

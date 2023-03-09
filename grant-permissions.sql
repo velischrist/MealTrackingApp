@@ -1,3 +1,5 @@
+-- CS 121 Winter 2023 Final Project
+
 CREATE USER 'appadmin'@'localhost' IDENTIFIED BY 'adminpw';
 CREATE USER 'appclient'@'localhost' IDENTIFIED BY 'clientpw';
 

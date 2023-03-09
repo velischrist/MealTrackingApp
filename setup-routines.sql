@@ -1,6 +1,11 @@
--- Routines for Meal Tracker app
--- Includes functions total_caloric_intake, get_average_ratings, and procedure update_avg_rating
+-- CS 121 Winter 2023 Final Project
 
+-- Routines for Meal Tracking app
+-- Includes: functions total_caloric_intake, get_average_ratings, 
+--           procedure update_avg_rating and
+--           trigger ____
+
+-- FUNCTIONS
 -- Computes the total caloric intake of a single user from begin date to end date, inclusive
 DELIMITER !
 CREATE FUNCTION total_caloric_intake (
@@ -35,6 +40,7 @@ BEGIN
 END!
 DELIMITER ;
 
+-- PROCEDURES
 -- Updates average rating whenever a new rating is added to a recipe
 -- Also updates the number of ratings
 DELIMITER !
@@ -51,4 +57,4 @@ DELIMITER ;
 
 
 
-
+-- TRIGGERS

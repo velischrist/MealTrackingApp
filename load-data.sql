@@ -1,8 +1,9 @@
 -- CS 121 Winter 2023 Final Project
 -- File to load the data for our dataset
+-- The sources for the data are specified in the README file
+-- We also generated our own data using the scripts in generate_data.ipynb
 
 SET GLOBAL local_infile = 1; 
-
 
 LOAD DATA LOCAL INFILE '/Users/velis.christ/Documents/Caltech/Winter2023/CS121/FinalProject/users.csv' INTO TABLE users
 FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;

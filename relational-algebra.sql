@@ -1,16 +1,20 @@
--- total calories eaten by user number 10 on 03/08/23
+-- CS 121 Winter 2023 Final Project
+-- SQL queries for the meal tracking app database
+
+-- Compute the total caloric intake of user 10 on date 03/07/23
 SELECT SUM(calories)
 FROM meals NATURAL JOIN meal_log 
 WHERE user_id = 10 AND meal_date = "2023-03-07";
 
--- Display how many of each rating level recipes for Mexican cuisine received 
+-- Display the number of each rating that recipes for Mexican cuisine received
+-- ordered by the rating
 SELECT rating, COUNT(*)
 FROM ratings JOIN recipes ON ratings.recipe_id = recipes.recipe_id
 WHERE cuisine = 'Mexican'
 GROUP BY rating 
 ORDER BY rating;
 
--- list of recipes and their rating as rated by the user named Chad
+-- Select a list of recipes and their rating as rated by the user named Chad
 SELECT recipe_name, rating
 FROM recipes JOIN ratings ON ratings.recipe_id = recipes.recipe_id
 WHERE ratings.user_id = (SELECT user_id FROM users WHERE first_name = 'Chad');
