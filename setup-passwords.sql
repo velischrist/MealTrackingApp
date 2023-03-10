@@ -4,6 +4,7 @@
 -- File for Password Management section of Final Project
 -- (Provided) This function generates a specified number of characters for 
 -- using as a salt in passwords.
+DROP FUNCTION IF EXISTS make_salt;
 DELIMITER !
 CREATE FUNCTION make_salt(num_chars INT) 
 RETURNS VARCHAR(20) NOT DETERMINISTIC
@@ -20,32 +21,12 @@ BEGIN
     RETURN salt;
 END !
 DELIMITER ;
--- Provided (you may modify if you choose)
--- This table holds information for authenticating users based on
--- a password.  Passwords are not stored plaintext so that they
--- cannot be used by people that shouldn't have them.
--- You may extend that table to include an is_admin or role attribute if you 
--- have admin or other roles for users in your application 
--- (e.g. store managers, data managers, etc.)
-CREATE TABLE users_info (
-    -- Usernames are up to 20 characters.
-    username VARCHAR(20) PRIMARY KEY,
-    -- Salt will be 8 characters all the time, so we can make this 8.
-    salt CHAR(8) NOT NULL,
-    -- We use SHA-2 with 256-bit hashes.  MySQL returns the hash
-    -- value as a hexadecimal string, which means that each byte is
-    -- represented as 2 characters.  Thus, 256 / 8 * 2 = 64.
-    -- We can use BINARY or CHAR here; BINARY simply has a different
-    -- definition for comparison/sorting than CHAR.
-    password_hash BINARY(64) NOT NULL,
 
-    -- Boolean for whether the user is an admin or not
-    is_admin BOOLEAN NOT NULL
-);
 -- [Problem 1a]
 -- Adds a new user to the user_info table, using the specified password (max
 -- of 20 characters). Salts the password with a newly-generated salt value,
 -- and then the salt and hash values are both stored in the table.
+DROP PROCEDURE IF EXISTS sp_add_user;
 DELIMITER !
 CREATE PROCEDURE sp_add_user(new_username VARCHAR(20), password VARCHAR(20))
 BEGIN
@@ -54,10 +35,10 @@ BEGIN
 
     IF new_username = 'appadmin' THEN 
         INSERT INTO users_info 
-            VALUES (new_username, salt, SHA2(CONCAT(salt, password), 256), 1)
+            VALUES (new_username, salt, SHA2(CONCAT(salt, password), 256), 1);
     ELSE 
         INSERT INTO users_info
-            VALUES (new_username, salt, SHA2(CONCAT(salt, password), 256), 0)
+            VALUES (new_username, salt, SHA2(CONCAT(salt, password), 256), 0);
     END IF;
 END !
 DELIMITER ;
@@ -66,6 +47,7 @@ DELIMITER ;
 -- Authenticates the specified username and password against the data
 -- in the user_info table.  Returns 1 if the user appears in the table, and the
 -- specified password hashes to the value for the user. Otherwise returns 0.
+DROP FUNCTION IF EXISTS authenticate;
 DELIMITER !
 CREATE FUNCTION authenticate(username VARCHAR(20), password VARCHAR(20))
 RETURNS TINYINT DETERMINISTIC
@@ -79,7 +61,7 @@ BEGIN
 
     IF username IN (SELECT users.username FROM user_info users) 
     AND SHA2(CONCAT(salt, password), 256) = password_hash THEN
-        RETURN TRUE
+        RETURN TRUE;
     ELSE
         RETURN FALSE;
     END IF;
@@ -89,8 +71,8 @@ DELIMITER ;
 -- [Problem 1c]
 -- Add at least two users into your user_info table so that when we run this file,
 -- we will have examples users in the database.
-CALL sp_add_user('appadmin', 'sarah_veli_samir')
-CALL sp_add_user('appclient', 'pistachio')
+CALL sp_add_user('appadmin', 'sarah_veli_samir');
+CALL sp_add_user('appclient', 'pistachio');
 
 -- [Problem 1d]
 -- Optional: Create a procedure sp_change_password to generate a new salt and 

@@ -7,16 +7,31 @@ DROP TABLE IF EXISTS recipes;
 DROP TABLE IF EXISTS meal_log;
 DROP TABLE IF EXISTS meals;
 DROP TABLE IF EXISTS goals;
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS users_info;
 
--- CREATE TABLE commands:
-CREATE TABLE users (
-    username VARCHAR(20),
-    first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL,
-    email VARCHAR(200) NOT NULL UNIQUE,
-    password VARCHAR(50) NOT NULL,
-    PRIMARY KEY (username)
+-- Provided (you may modify if you choose)
+-- This table holds information for authenticating users based on
+-- a password.  Passwords are not stored plaintext so that they
+-- cannot be used by people that shouldn't have them.
+-- You may extend that table to include an is_admin or role attribute if you 
+-- have admin or other roles for users in your application 
+-- (e.g. store managers, data managers, etc.)
+CREATE TABLE users_info (
+    -- Usernames are up to 20 characters.
+    username VARCHAR(20) PRIMARY KEY,
+
+    -- Salt will be 8 characters all the time, so we can make this 8.
+    salt CHAR(8) NOT NULL,
+
+    -- We use SHA-2 with 256-bit hashes.  MySQL returns the hash
+    -- value as a hexadecimal string, which means that each byte is
+    -- represented as 2 characters.  Thus, 256 / 8 * 2 = 64.
+    -- We can use BINARY or CHAR here; BINARY simply has a different
+    -- definition for comparison/sorting than CHAR.
+    password_hash BINARY(64) NOT NULL,
+
+    -- Boolean for whether the user is an admin or not
+    is_admin BOOLEAN NOT NULL
 );
 
 CREATE TABLE goals (
@@ -24,7 +39,7 @@ CREATE TABLE goals (
     goal_type ENUM('calories', 'protein', 'fat', 'sugar'), 
     target INT NOT NULL, -- in units per day
     PRIMARY KEY (username, goal_type),
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    FOREIGN KEY (username) REFERENCES users_info(username)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
@@ -38,7 +53,7 @@ CREATE TABLE meals (
     fat INT,
     sugar INT,
     PRIMARY KEY (meal_id),
-    FOREIGN KEY (username) REFERENCES users(username)
+    FOREIGN KEY (username) REFERENCES users_info(username)
         ON DELETE CASCADE 
         ON UPDATE CASCADE
 );
@@ -49,8 +64,8 @@ CREATE TABLE meal_log (
     meal_date DATE, 
     -- meal_type ENUM('breakfast', 'lunch', 'dinner', 'snack') NOT NULL,
     meal_type VARCHAR(50) NOT NULL,
-    PRIMARY KEY (user_id, meal_id, meal_date),
-    FOREIGN KEY (username) REFERENCES users(username)
+    PRIMARY KEY (username, meal_id, meal_date),
+    FOREIGN KEY (username) REFERENCES users_info(username)
         ON DELETE CASCADE 
         ON UPDATE CASCADE,
     FOREIGN KEY (meal_id) REFERENCES meals(meal_id)
@@ -69,18 +84,18 @@ CREATE TABLE recipes (
     instructions TEXT NOT NULL,
     username VARCHAR(20), -- User who created the recipe
     PRIMARY KEY (recipe_id),
-    FOREIGN KEY (username) REFERENCES users(username)
+    FOREIGN KEY (username) REFERENCES users_info(username)
         ON DELETE CASCADE 
         ON UPDATE CASCADE
 );
 
 CREATE TABLE ratings (
-    username VARCHAR(20) NOT NULL, -- User who rated the recipe
-    recipe_id INT NOT NULL,
+    username VARCHAR(20), -- User who rated the recipe
+    recipe_id INT,
     rating INT NOT NULL,
     CHECK (rating >= 1 AND rating <= 5),
     PRIMARY KEY (username, recipe_id),
-    FOREIGN KEY (username) REFERENCES users(username)
+    FOREIGN KEY (username) REFERENCES users_info(username)
         ON DELETE CASCADE 
         ON UPDATE CASCADE,
     FOREIGN KEY (recipe_id) REFERENCES recipes(recipe_id)

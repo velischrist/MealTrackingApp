@@ -5,6 +5,37 @@
 
 SET GLOBAL local_infile = 1; 
 
+-- Create a temporary table to hold the users data
+CREATE TABLE temp (
+    username VARCHAR(20),
+    pswd VARCHAR(20) NOT NULL,
+    PRIMARY KEY(username)
+);
+
+-- Load the CSV file data into the temporary table
+LOAD DATA LOCAL INFILE 'data/users.csv' INTO TABLE temp
+FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
+
+-- Loop through the rows of the temporary table, 
+-- calling the procedure sp_add_user for each user
+DECLARE @username VARCHAR(20);
+DECLARE @pswd VARCHAR(20);
+DECLARE cursor_name CURSOR FOR
+SELECT username, pswd FROM temp;
+OPEN cursor_name;
+FETCH NEXT FROM cursor_name INTO @username, @pswd;
+WHILE @@FETCH_STATUS = 0
+BEGIN
+    EXEC sp_add_user(@username, @pswd);
+    FETCH NEXT FROM cursor_name INTO @username, @pswd;
+END;
+CLOSE cursor_name;
+DEALLOCATE cursor_name;
+
+-- Drop the temporary table
+DROP TABLE temp;
+
+
 LOAD DATA LOCAL INFILE 'data/users.csv' INTO TABLE users
 FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
 
