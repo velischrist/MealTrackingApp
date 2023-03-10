@@ -7,50 +7,65 @@ DROP TABLE IF EXISTS recipes;
 DROP TABLE IF EXISTS meal_log;
 DROP TABLE IF EXISTS meals;
 DROP TABLE IF EXISTS goals;
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS users_info;
 
--- CREATE TABLE commands:
-CREATE TABLE users (
-    user_id INT AUTO_INCREMENT,
-    first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL,
-    email VARCHAR(200) NOT NULL UNIQUE,
-    password VARCHAR(50) NOT NULL,
-    PRIMARY KEY (user_id)
+-- Provided (you may modify if you choose)
+-- This table holds information for authenticating users based on
+-- a password.  Passwords are not stored plaintext so that they
+-- cannot be used by people that shouldn't have them.
+-- You may extend that table to include an is_admin or role attribute if you 
+-- have admin or other roles for users in your application 
+-- (e.g. store managers, data managers, etc.)
+CREATE TABLE users_info (
+    -- Usernames are up to 20 characters.
+    username VARCHAR(20) PRIMARY KEY,
+
+    -- Salt will be 8 characters all the time, so we can make this 8.
+    salt CHAR(8) NOT NULL,
+
+    -- We use SHA-2 with 256-bit hashes.  MySQL returns the hash
+    -- value as a hexadecimal string, which means that each byte is
+    -- represented as 2 characters.  Thus, 256 / 8 * 2 = 64.
+    -- We can use BINARY or CHAR here; BINARY simply has a different
+    -- definition for comparison/sorting than CHAR.
+    password_hash BINARY(64) NOT NULL,
+
+    -- Boolean for whether the user is an admin or not
+    is_admin BOOLEAN NOT NULL
 );
 
 CREATE TABLE goals (
-    user_id INT,
+    username VARCHAR(20),
     goal_type ENUM('calories', 'protein', 'fat', 'sugar'), 
     target INT NOT NULL, -- in units per day
-    PRIMARY KEY (user_id, goal_type),
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    PRIMARY KEY (username, goal_type),
+    FOREIGN KEY (username) REFERENCES users_info(username)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
 
 CREATE TABLE meals (
     meal_id INT AUTO_INCREMENT,
-    user_id INT NOT NULL,
+    username VARCHAR(20) NOT NULL,
     meal_name VARCHAR(200) NOT NULL,
     calories INT NOT NULL,
     protein INT,
     fat INT,
     sugar INT,
     PRIMARY KEY (meal_id),
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    FOREIGN KEY (username) REFERENCES users_info(username)
         ON DELETE CASCADE 
         ON UPDATE CASCADE
 );
 
 CREATE TABLE meal_log (
-    user_id INT, 
+    username VARCHAR(20), 
     meal_id INT, 
     meal_date DATE, 
     -- meal_type ENUM('breakfast', 'lunch', 'dinner', 'snack') NOT NULL,
     meal_type VARCHAR(50) NOT NULL,
-    PRIMARY KEY (user_id, meal_id, meal_date),
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    PRIMARY KEY (username, meal_id, meal_date),
+    FOREIGN KEY (username) REFERENCES users_info(username)
         ON DELETE CASCADE 
         ON UPDATE CASCADE,
     FOREIGN KEY (meal_id) REFERENCES meals(meal_id)
@@ -67,22 +82,20 @@ CREATE TABLE recipes (
     cook_time INT, -- cook time in minutes
     ingredients TEXT NOT NULL,
     instructions TEXT NOT NULL,
-    num_ratings INT DEFAULT 0,
-    avg_rating NUMERIC(3, 2),
-    user_id INT, -- User who created the recipe
+    username VARCHAR(20), -- User who created the recipe
     PRIMARY KEY (recipe_id),
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    FOREIGN KEY (username) REFERENCES users_info(username)
         ON DELETE CASCADE 
         ON UPDATE CASCADE
 );
 
 CREATE TABLE ratings (
-    user_id INT NOT NULL, -- User who rated the recipe
-    recipe_id INT NOT NULL,
+    username VARCHAR(20), -- User who rated the recipe
+    recipe_id INT,
     rating INT NOT NULL,
     CHECK (rating >= 1 AND rating <= 5),
-    PRIMARY KEY (user_id, recipe_id),
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    PRIMARY KEY (username, recipe_id),
+    FOREIGN KEY (username) REFERENCES users_info(username)
         ON DELETE CASCADE 
         ON UPDATE CASCADE,
     FOREIGN KEY (recipe_id) REFERENCES recipes(recipe_id)
@@ -91,7 +104,5 @@ CREATE TABLE ratings (
 );
 
 -- INDEXES:
--- Index to make looking up recipe average ratings faster
-CREATE INDEX idx_avg_rating ON recipes(avg_rating);
 -- Index to make looking up user ratings faster
 CREATE INDEX idx_rating ON ratings(rating);

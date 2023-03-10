@@ -5,39 +5,26 @@
 
 SET GLOBAL local_infile = 1; 
 
--- Create a temporary table to hold the users data
-CREATE TABLE temp (
-    username VARCHAR(20),
-    pswd VARCHAR(20) NOT NULL,
-    PRIMARY KEY(username)
-);
-
--- Load the CSV file data into the temporary table
-LOAD DATA LOCAL INFILE 'data/users.csv' INTO TABLE temp
-FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
-
--- Loop through the rows of the temporary table, 
--- calling the procedure sp_add_user for each user
-DECLARE @username VARCHAR(20);
-DECLARE @pswd VARCHAR(20);
-DECLARE cursor_name CURSOR FOR
-SELECT username, pswd FROM temp;
-OPEN cursor_name;
-FETCH NEXT FROM cursor_name INTO @username, @pswd;
-WHILE @@FETCH_STATUS = 0
-BEGIN
-    EXEC sp_add_user(@username, @pswd);
-    FETCH NEXT FROM cursor_name INTO @username, @pswd;
-END;
-CLOSE cursor_name;
-DEALLOCATE cursor_name;
-
--- Drop the temporary table
-DROP TABLE temp;
-
-
-LOAD DATA LOCAL INFILE 'data/users.csv' INTO TABLE users
-FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
+CALL sp_add_user('lacey_valenta', 'YDy+u-e~');
+CALL sp_add_user('wendell_cervantez','eVY3Y$A.y{e6');
+CALL sp_add_user('tabansi_cagle','Udu)AMuXYj');
+CALL sp_add_user('maureen_yeates','yza9UZUTUg');
+CALL sp_add_user('marvelle_massa','y&y%EqurajU');
+CALL sp_add_user('becse_massa','UrAqE7U^y_y/');
+CALL sp_add_user('esteban_hoag','YNEBA{A`uX');
+CALL sp_add_user('chad_nalls','yVUpU6Ate2a@');
+CALL sp_add_user('yuri_hon','eGaNY*ejU3y');
+CALL sp_add_user('dade_gastelum','E}u-e7y&uhE');
+CALL sp_add_user('wickham_driggers','Y3EBa5y');
+CALL sp_add_user('nadav_mcmullin','amau6Y~');
+CALL sp_add_user('lann_kugler','u#Y#aGa3');
+CALL sp_add_user('severin_hintz','AZy/u[E]');
+CALL sp_add_user('ulima_fernandes','uve*E`AXEbA~');
+CALL sp_add_user('parry_izquierdo','Y!ANaLy@e#aL');
+CALL sp_add_user('frank_hon','u=UXe&A*');
+CALL sp_add_user('kesia_libby','AtY9ePaP');
+CALL sp_add_user('crisiant_wingfield','A=YnULa5Y-un');
+CALL sp_add_user('savanna_maddy','E-USapU');
 
 LOAD DATA LOCAL INFILE 'data/food_recipes.csv' INTO TABLE recipes
 FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\r\n' IGNORE 1 ROWS
@@ -47,12 +34,6 @@ SET prep_time = NULLIF(@prep_time, ''),
 
 LOAD DATA LOCAL INFILE 'data/ratings.csv' INTO TABLE ratings
 FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
-
--- Update the average rating now that we have data about the ratings
-UPDATE recipes SET avg_rating = (
-    SELECT AVG(rating) FROM ratings
-    WHERE ratings.recipe_id = recipes.recipe_id
-);
 
 LOAD DATA LOCAL INFILE 'data/goals.csv' INTO TABLE goals
 FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
