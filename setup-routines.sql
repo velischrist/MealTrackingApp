@@ -5,6 +5,9 @@
 --           procedure update_avg_rating and
 --           trigger ____
 
+-- VIEWS
+-- Create a view of recipes with their average rating
+
 -- FUNCTIONS
 -- Computes the total caloric intake of a single user from begin date to end date, inclusive
 DELIMITER !
@@ -41,20 +44,12 @@ END!
 DELIMITER ;
 
 -- PROCEDURES
--- Updates average rating whenever a new rating is added to a recipe
--- Also updates the number of ratings
-DELIMITER !
-CREATE PROCEDURE update_avg_rating (
-     IN recipe_id INT, IN rating INT
-)
-BEGIN
-     -- Update the average rating and number of ratings for the recipe
-     UPDATE recipes SET avg_rating = (avg_rating * num_ratings + rating) / (num_ratings + 1),
-                        num_ratings = num_ratings + 1
-     WHERE recipes.recipe_id = recipe_id;
-END!
-DELIMITER ;
+-- Add a new meal
 
+
+-- Update a goal
 
 
 -- TRIGGERS
+-- Update the average rating of a recipe in the view when a there's a new rating
+-- Uses the compute average rating function above
