@@ -4,7 +4,6 @@
 -- DROP TABLE commands:
 DROP TABLE IF EXISTS ratings;
 DROP TABLE IF EXISTS recipes;
-DROP TABLE IF EXISTS meal_log;
 DROP TABLE IF EXISTS meals;
 DROP TABLE IF EXISTS goals;
 DROP TABLE IF EXISTS users_info;
@@ -48,6 +47,8 @@ CREATE TABLE meals (
     meal_id INT AUTO_INCREMENT,
     username VARCHAR(20) NOT NULL,
     meal_name VARCHAR(200) NOT NULL,
+    meal_date DATE NOT NULL, 
+    meal_type ENUM('breakfast', 'lunch', 'dinner', 'snack') NOT NULL,
     calories INT NOT NULL,
     protein INT,
     fat INT,
@@ -58,20 +59,6 @@ CREATE TABLE meals (
         ON UPDATE CASCADE
 );
 
-CREATE TABLE meal_log (
-    username VARCHAR(20), 
-    meal_id INT, 
-    meal_date DATE, 
-    -- meal_type ENUM('breakfast', 'lunch', 'dinner', 'snack') NOT NULL,
-    meal_type VARCHAR(50) NOT NULL,
-    PRIMARY KEY (username, meal_id, meal_date),
-    FOREIGN KEY (username) REFERENCES users_info(username)
-        ON DELETE CASCADE 
-        ON UPDATE CASCADE,
-    FOREIGN KEY (meal_id) REFERENCES meals(meal_id)
-        ON DELETE CASCADE 
-        ON UPDATE CASCADE
-);
 
 CREATE TABLE recipes (
     recipe_id INT AUTO_INCREMENT,

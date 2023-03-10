@@ -45,9 +45,42 @@ DELIMITER ;
 
 -- PROCEDURES
 -- Add a new meal
+DELIMITER !
+CREATE PROCEDURE update_avg_rating (
+     IN recipe_id INT, IN rating INT
+)
+BEGIN
+     -- Update the average rating and number of ratings for the recipe
+     UPDATE recipes SET avg_rating = (avg_rating * num_ratings + rating) / (num_ratings + 1),
+                        num_ratings = num_ratings + 1
+     WHERE recipes.recipe_id = recipe_id;
+END!
+DELIMITER ;
 
+-- Add a new goal of a user
+-- Either add an entirely new goal or update an existing goal to reflect the 
+-- change
+DELIMITER !
+CREATE PROCEDURE add_goal (
+     IN old_username VARCHAR(20), 
+     IN old_goal_type ENUM('calories', 'protein', 'fat', 'sugar'), 
+     IN old_target INT
+)
+BEGIN
+     DECLARE v_rowcount INT DEFAULT 0;
 
--- Update a goal
+     UPDATE goals
+     SET target = old_target
+     WHERE username = old_username AND goal_type = old_goal_type;
+
+     SET v_rowcount = ROW_COUNT();
+
+     IF v_rowcount = 0 THEN
+          INSERT INTO goals (username, goal_type, target)
+          VALUES (old_username, old_goal_type, old_target);
+     END IF;
+END !
+DELIMITER ;
 
 
 -- TRIGGERS
