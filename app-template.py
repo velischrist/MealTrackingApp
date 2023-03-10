@@ -82,6 +82,13 @@ def return_to_menu_admin():
     else:
         quit_ui()
 
+def return_to_menu_client(username):
+    ans = input('press ENTER to return to the menu or anything else to quit').lower()
+    if ans == '':
+        show_client_options(username)
+    else:
+        quit_ui()
+
 
 def view_users():
     print('viewing all users')
@@ -167,18 +174,21 @@ def remove_rating():
         else:
             sys.stderr('An error occurred, give something useful for clients...')
 
-def add_goal():
-    goal_type = input('select a goal type: a) calories, b) protein, c) fat, d) sugar').lower()
-    type_dict = {1: 'calories', 2: 'protein', 3: 'fat', 4: 'sugar'}
+def add_goal(username):
+    type_dict = {'1': 'calories', '2': 'protein', '3': 'fat', '4': 'sugar'}
+    print('goal types: 1) calories, 2) protein, 3) fat, 4) sugar')
+    goal_type = input('make a selection: ').lower()
+    print(goal_type)
     if goal_type not in type_dict:
         print('goal type selection not valid. try again!')
+        add_goal(username)
     target = input('enter the daily target for your goal:').lower()
     print('*' * 50)
     cursor = conn.cursor()
-    sql = 'INSERT INTO goals(user_id, goal_type, target) VALUES (%s, %s, %s);' % (user_id, type_dict[goal_type], target)
+    sql = 'INSERT INTO goals(username, goal_type, target) VALUES (\'%s\', \'%s\',\'%s\');' % (username, type_dict[goal_type], target)
     try:
         cursor.execute(sql)
-        return_to_menu_admin()
+        return_to_menu_client(username)
 
     except mysql.connector.Error as err:
         if DEBUG:
@@ -187,11 +197,99 @@ def add_goal():
         else:
             sys.stderr('An error occurred, give something useful for clients...')
 
+def add_meal(username):
+    type_dict = {'1': 'breakfast', '2': 'lunch', '3': 'dinner', '4': 'snack'}
+    print('meal types: 1) breakfast, 2) lunch, 3) dinner, 4) snack')
+    meal_type_input = input('what type of meal did u eat: ').lower()
+    if meal_type_input not in type_dict:
+        print('goal type selection not valid. try again!')
+        add_meal(username)
+    else:
+        meal_type = type_dict[meal_type]
+    
+    meal_date = input('date (YYYY-mm-dd)')
+    meal_name = input('meal name:')
+    calories = input('calories (kcal):')
+    protein = input('protein (g):')
+    fat = input('fat (g):')
+    sugar = input('sugar (g):')
+    print('*' * 50)
+    cursor = conn.cursor()
+    sql = 'INSERT INTO meals(meal_date, meal_type, username, meal_name, calories, protein, fat, sugar) VALUES (\'%s\', \'%s\', \'%s\', \'%s\', %s, %s, %s, %s);' % (meal_date, meal_type, username, meal_name, calories, protein, fat, sugar)
+    try:
+        cursor.execute(sql)
+        print('recipe succesfully added!')
+        return_to_menu_client(username)
+
+    except mysql.connector.Error as err:
+        if DEBUG:
+            sys.stderr(err)
+            sys.exit(1)
+        else:
+            sys.stderr('An error occurred, give something useful for clients...')
+            add_meal()
+
+def add_recipe(username):
+    recipe_name = input('recipe name:')
+    cuisine = input('cuisine:')
+    course = input('course:')
+    prep_time = input('prep time in minutes:')
+    cook_time = input('cook time in minutes:')
+    ingredients = input('ingredients:')
+    instructions = input('instructions:')
+    print('*' * 50)
+    cursor = conn.cursor()
+    sql = 'INSERT INTO recipes(username, recipe_name, cuisine, course, ingredients, \
+        instructions, prep_time, cook_time, ) \
+        VALUES (\'%s\', \'%s\', \'%s\', \'%s\',\'%s\', \'%s\',%s, %s);' \
+        % (username, recipe_name, cuisine, course, ingredients, instructions, prep_time, cook_time)
+    
+    try:
+        cursor.execute(sql)
+        print('recipe succesfully added!')
+        return_to_menu_client(username)
+
+    except mysql.connector.Error as err:
+        if DEBUG:
+            sys.stderr(err)
+            sys.exit(1)
+        else:
+            sys.stderr('An error occurred, give something useful for clients...')
+            add_recipe()
+
+def add_rating(username):
+    recipe_id = input('recipe name:')
+    cuisine = input('cuisine:')
+    course = input('course:')
+    prep_time = input('prep time in minutes:')
+    cook_time = input('cook time in minutes:')
+    ingredients = input('ingredients:')
+    instructions = input('instructions:')
+    print('*' * 50)
+    cursor = conn.cursor()
+    sql = 'INSERT INTO recipes(username, recipe_name, cuisine, course, ingredients, \
+        instructions, prep_time, cook_time, ) \
+        VALUES (\'%s\', \'%s\', \'%s\', \'%s\',\'%s\', \'%s\',%s, %s);' \
+        % (username, recipe_name, cuisine, course, ingredients, instructions, prep_time, cook_time)
+    
+    try:
+        cursor.execute(sql)
+        print('recipe succesfully added!')
+        return_to_menu_client(username)
+
+    except mysql.connector.Error as err:
+        if DEBUG:
+            sys.stderr(err)
+            sys.exit(1)
+        else:
+            sys.stderr('An error occurred, give something useful for clients...')
+            add_recipe()
+
 
 # ----------------------------------------------------------------------
 # Command-Line Functionality
 # ----------------------------------------------------------------------
-def show_client_options():
+def show_client_options(username):
     """
     Displays options specific for admins, such as adding new data <x>,
     modifying <x> based on a given id, removing <x>, etc.
@@ -203,7 +301,7 @@ def show_client_options():
     print('  (a) - add a new goal')
     print('  (b) - view my meal log')
     print('  (c) - add a new meal')
-    print('  (d) - view recipes')
+    # print('  (d) - view recipes')
     print('  (e) - add a recipe')
     print('  (f) - rate a recipe')
     print('  (q) - quit')
@@ -212,17 +310,17 @@ def show_client_options():
     if ans == 'q':
         quit_ui()
     elif ans == 'a':
-        add_goal()
+        add_goal(username)
     elif ans =='b':
-        view_meal_log()
+        view_meal_log(username)
     elif ans =='c':
-        add_meal()
-    elif ans =='d':
-        view_recipes()
+        add_meal(username)
+    # elif ans =='d':
+    #     view_recipes()
     elif ans == 'e':
-        add_recipe()
+        add_recipe(username)
     elif ans == 'f':
-        add_rating()
+        add_rating(username)
     else:
         print('your input is not valid. try again!')
         show_client_options()
@@ -300,7 +398,6 @@ def main():
     username = input('username: ')
     password = input('password: ')
     is_authenticated, is_admin = log_in(username, password)
-    print(is_authenticated, is_admin)
     if not is_authenticated:
         print('incorrect username and/or password. try again!')
         main()
@@ -308,7 +405,7 @@ def main():
         if is_admin:
             show_admin_options()
         else:
-            show_client_options()
+            show_client_options(username)
 
 
 if __name__ == '__main__':
