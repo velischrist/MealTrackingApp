@@ -55,11 +55,11 @@ BEGIN
     DECLARE password_hash BINARY(64);
     DECLARE salt CHAR(8);
 
-    SELECT users.salt, users.password_hash INTO salt, password_hash
-    FROM user_info users
-    WHERE users.username = username;
+    SELECT users_info.salt, users_info.password_hash INTO salt, password_hash
+    FROM users_info 
+    WHERE users_info.username = username;
 
-    IF username IN (SELECT users.username FROM user_info users) 
+    IF username IN (SELECT users_info.username FROM users_info) 
     AND SHA2(CONCAT(salt, password), 256) = password_hash THEN
         RETURN TRUE;
     ELSE
