@@ -75,28 +75,27 @@ def get_conn():
 # ----------------------------------------------------------------------
 # Functions for Command-Line Options/Query Execution
 # ----------------------------------------------------------------------
-def return_to_menu():
+def return_to_menu_admin():
     ans = input('press ENTER to return to the menu or anything else to quit').lower()
     if ans == '':
         show_admin_options()
     else:
         quit_ui()
 
+
 def view_users():
     print('viewing all users')
     print('*' * 50)
     cursor = conn.cursor()
-    sql = 'SELECT user_id, first_name, last_name FROM users;'
+    sql = 'SELECT username FROM users_info;'
     try:
         cursor.execute(sql)
         rows = cursor.fetchall()
-        for row in rows:
-            (user_id, first_name, last_name) = row
-            print(user_id, ' ', first_name, ' ', last_name)
-
+        for idx, username in enumerate(rows):
+            print(idx+1, username[0])
         print('*' * 50)
         print('there are total', len(rows), 'users in the app.')
-        return_to_menu()
+        return_to_menu_admin()
     except mysql.connector.Error as err:
         if DEBUG:
             sys.stderr(err)
@@ -105,18 +104,18 @@ def view_users():
             sys.stderr('An error occurred, give something useful for clients...')
     
 def remove_user():
-    remove_id = input('enter the user_id to remove: ').lower()
+    remove_id = input('enter the username to remove: ').lower()
     print('*' * 50)
     cursor = conn.cursor()
-    sql = 'DELETE FROM users WHERE user_id = %s;' % (remove_id, )
+    sql = 'DELETE FROM users_info WHERE username = \'%s\';' % (remove_id, )
     try:
         cursor.execute(sql)
         if cursor.rowcount == 1:
-            print('user #%s successfully removed.' % remove_id)
+            print('user %s successfully removed.' % remove_id)
         else:
-            print('uh oh. user #%s could not removed. (ㅠ﹏ㅠ) \nmake sure the user exists or try again.' % remove_id)
+            print('uh oh. user %s could not removed. (ㅠ﹏ㅠ) \nmake sure the user exists or try again.' % remove_id)
             print('*' * 50)
-        return_to_menu()
+        return_to_menu_admin()
     except mysql.connector.Error as err:
         if DEBUG:
             sys.stderr(err)
@@ -137,7 +136,7 @@ def remove_recipe():
         else:
             print('uh oh. recipe #%s could not removed. (ㅠ﹏ㅠ) \nmake sure the recipe exists or try again.' % remove_id)
             print('*' * 50)
-        return_to_menu()
+        return_to_menu_admin()
 
     except mysql.connector.Error as err:
         if DEBUG:
@@ -148,10 +147,10 @@ def remove_recipe():
 
 def remove_rating():
     recipe_id = input('enter the recipe_id for the recipe to remove a rating for: ').lower()
-    user_id = input('enter the user_id of the user who submitted the recipe: ').lower()
+    username = input('enter the username of the user who submitted the recipe: ').lower()
     print('*' * 50)
     cursor = conn.cursor()
-    sql = 'DELETE FROM ratings WHERE recipe_id = %s AND user_id = %s;' % (recipe_id, user_id, )
+    sql = 'DELETE FROM ratings WHERE recipe_id = %s AND username = \'%s\';' % (recipe_id, username, )
     try:
         cursor.execute(sql)
         if cursor.rowcount == 1:
@@ -159,7 +158,7 @@ def remove_rating():
         else:
             print('uh oh. rating could not removed. (ㅠ﹏ㅠ) \nmake sure the rating exists or try again.')
             print('*' * 50)
-        return_to_menu()
+        return_to_menu_admin()
 
     except mysql.connector.Error as err:
         if DEBUG:
@@ -179,7 +178,7 @@ def add_goal():
     sql = 'INSERT INTO goals(user_id, goal_type, target) VALUES (%s, %s, %s);' % (user_id, type_dict[goal_type], target)
     try:
         cursor.execute(sql)
-        return_to_menu()
+        return_to_menu_admin()
 
     except mysql.connector.Error as err:
         if DEBUG:
@@ -226,7 +225,7 @@ def show_client_options():
         add_rating()
     else:
         print('your input is not valid. try again!')
-        show_admin_options()
+        show_client_options()
         
 
 
@@ -262,6 +261,29 @@ def show_admin_options():
         show_admin_options()
         
 
+def log_in(username, password):
+    # returns a boolean tuple of (is_authenticated, is_admin)
+    is_admin = False
+    cursor = conn.cursor()
+    sql = 'SELECT authenticate(\'%s\', \'%s\');' % (username, password, )
+
+    try:
+        cursor.execute(sql)
+        ret = cursor.fetchone()
+        if ret[0]:
+            sql2 = 'SELECT is_admin FROM users_info WHERE username = \'%s\';' % (username, )
+            cursor.execute(sql2)
+            is_admin = cursor.fetchone()[0]
+            return (True, is_admin)
+        else:
+            return (False, is_admin)
+
+    except mysql.connector.Error as err:
+        if DEBUG:
+            sys.stderr(err)
+            sys.exit(1)
+        else:
+            sys.stderr('An error occurred, give something useful for clients...')
 
 def quit_ui():
     """
@@ -275,13 +297,18 @@ def main():
     """
     Main function for starting things up.
     """
-    # username = input('username: ').lower()
-    # password = input('password: ').lower()
-
-
-    
-
-    show_admin_options()
+    username = input('username: ')
+    password = input('password: ')
+    is_authenticated, is_admin = log_in(username, password)
+    print(is_authenticated, is_admin)
+    if not is_authenticated:
+        print('incorrect username and/or password. try again!')
+        main()
+    else:
+        if is_admin:
+            show_admin_options()
+        else:
+            show_client_options()
 
 
 if __name__ == '__main__':
