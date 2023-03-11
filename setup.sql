@@ -8,13 +8,11 @@ DROP TABLE IF EXISTS meals;
 DROP TABLE IF EXISTS goals;
 DROP TABLE IF EXISTS users_info;
 
--- Provided (you may modify if you choose)
 -- This table holds information for authenticating users based on
 -- a password.  Passwords are not stored plaintext so that they
 -- cannot be used by people that shouldn't have them.
--- You may extend that table to include an is_admin or role attribute if you 
--- have admin or other roles for users in your application 
--- (e.g. store managers, data managers, etc.)
+-- We have extended that table to include an is_admin role attribute for
+-- admin users who have additional permissions (i.e., website managers). 
 CREATE TABLE users_info (
     -- Usernames are up to 20 characters.
     username VARCHAR(20) PRIMARY KEY,
@@ -33,41 +31,73 @@ CREATE TABLE users_info (
     is_admin BOOLEAN NOT NULL
 );
 
+-- This table stores information about goals users have set. 
+-- A user can set goals of daily consumption for calories, protein, fat, 
+-- and/or sugar. 
 CREATE TABLE goals (
     username VARCHAR(20),
+
+    -- Goal category: a goal represents a target daily consumption for a 
+    -- specified macro
     goal_type ENUM('calories', 'protein', 'fat', 'sugar'), 
-    target INT NOT NULL, -- in units per day
+
+    -- target daily consumption:
+    --     kcal/day for calories, 
+    --     grams/day for the rest
+    target INT NOT NULL, 
+
+    -- Each user can have one goal for each category
     PRIMARY KEY (username, goal_type),
     FOREIGN KEY (username) REFERENCES users_info(username)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
 
+-- This table holds information about the meals the users eat. Users
+-- can log their meals to keep track of their daily consumption. 
+-- Each meal is identified by a meal_id
+-- A user needs to specify a name, date, type of meal, and macros
 CREATE TABLE meals (
     meal_id INT AUTO_INCREMENT,
     username VARCHAR(20) NOT NULL,
-    meal_name VARCHAR(200) NOT NULL,
+    meal_name VARCHAR(200) NOT NULL, 
+
+    -- This holds the date the meal was consumed. 
+    -- We want to allow the user to add a meal about yesterday's day in case
+    -- the user forgot. To do this, the user specifies yesterday's day. 
     meal_date DATE NOT NULL, 
+
+    -- For now we only support specific meal types. In the future, we might
+    -- consider allowing the user to define new meal categories, but for now
+    -- we believe this is more effective. 
     meal_type ENUM('breakfast', 'lunch', 'dinner', 'snack') NOT NULL,
-    calories INT NOT NULL,
-    protein INT,
-    fat INT,
-    sugar INT,
+
+    calories INT NOT NULL, -- total calories in kcal
+    protein INT, -- measured in grams
+    fat INT, -- measured in grams
+    sugar INT, -- measured in grams
     PRIMARY KEY (meal_id),
     FOREIGN KEY (username) REFERENCES users_info(username)
         ON DELETE CASCADE 
         ON UPDATE CASCADE
 );
 
-
+-- This table holds information about recipes, such as name, instructions, 
+-- cook time. 
+-- Users and administators can upload recipes, which other people can view and
+-- rate
 CREATE TABLE recipes (
-    recipe_id INT AUTO_INCREMENT,
-    recipe_name VARCHAR(200) NOT NULL,
-    cuisine VARCHAR(100),
-    course VARCHAR(100),
+    recipe_id INT AUTO_INCREMENT, -- Uniqie identifies for recipes
+    recipe_name VARCHAR(200) NOT NULL, 
+    cuisine VARCHAR(100), -- e.g., Mexican, Indian
+    course VARCHAR(100), -- e.g., Lunch, Breakfast, Dinner
     prep_time INT, -- prep time in minutes
     cook_time INT, -- cook time in minutes
-    ingredients TEXT NOT NULL,
+    ingredients TEXT NOT NULL, -- List of ingredients
+
+    -- Detailed instructions for how to prepare and cook the meal. This 
+    -- attribute has a data type TEXT to allow users to describe their recipes
+    -- in detail
     instructions TEXT NOT NULL,
     username VARCHAR(20), -- User who created the recipe
     PRIMARY KEY (recipe_id),
@@ -76,11 +106,19 @@ CREATE TABLE recipes (
         ON UPDATE CASCADE
 );
 
+-- This table holds information about the recipe ratings. 
+-- Ratings are an integer from 1-5. 
+-- Users can rate each recipe only once
 CREATE TABLE ratings (
     username VARCHAR(20), -- User who rated the recipe
-    recipe_id INT,
+    recipe_id INT, -- The unique ID for the recipe
+
+    -- Rating is an INT between 1 and 5.
+    -- We have a CHECK constraint to implement this
     rating INT NOT NULL,
     CHECK (rating >= 1 AND rating <= 5),
+
+    -- A user can rate each recipe once
     PRIMARY KEY (username, recipe_id),
     FOREIGN KEY (username) REFERENCES users_info(username)
         ON DELETE CASCADE 
@@ -92,4 +130,6 @@ CREATE TABLE ratings (
 
 -- INDEXES:
 -- Index to make looking up user ratings faster
+-- This comes up handy when computing the average rating of each recipe. We 
+-- have a view that shows the recipes with their average rating
 CREATE INDEX idx_rating ON ratings(rating);

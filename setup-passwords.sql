@@ -33,6 +33,8 @@ BEGIN
     DECLARE salt CHAR(8);
     SELECT make_salt(8) INTO salt;
 
+    -- If the users is the admin, set is_admin to 1 (i.e., True).
+    -- Otherwise, set is_admin to 0 (i.e., False)
     IF new_username = 'appadmin' THEN 
         INSERT INTO users_info 
             VALUES (new_username, salt, SHA2(CONCAT(salt, password), 256), 1);
@@ -69,8 +71,8 @@ END !
 DELIMITER ;
 
 -- [Problem 1c]
--- Add at least two users into your user_info table so that when we run this file,
--- we will have examples users in the database.
+-- Add at least two users into your user_info table so that when we run this 
+-- file, we will have examples users in the database.
 CALL sp_add_user('appadmin', 'sarah_veli_samir');
 CALL sp_add_user('appclient', 'pistachio');
 

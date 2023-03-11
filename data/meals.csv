@@ -1,211 +1,211 @@
 meal_id,username,meal_name,meal_date,meal_type,calories,protein,fat,sugar
-1,lacey_valenta,Paleo Breakfast Casserole Recipe In A Mug,2023-03-03,breakfast,521,44,17,13
-2,lacey_valenta,Maharashtrian Batatyacha Kees Recipe (Spicy Roasted Potatoes With Peanuts),2023-03-03,lunch,418,37,11,15
-3,lacey_valenta,Crispy Amla Gawar Phali Sabzi Recipe,2023-03-03,dinner,733,32,9,11
-4,wendell_cervantez,Mushroom And Scrambled Egg Bagel Sandwich Recipe,2023-03-03,breakfast,713,40,16,19
-5,wendell_cervantez,Mulangi Thoran Recipe - Radish Stir Fry With Coconut,2023-03-03,lunch,756,33,18,21
-6,wendell_cervantez,Konkani Style Karate Batate Puddi Sagle Recipe - Bitter Gourd & Potato Curry,2023-03-03,dinner,585,40,17,16
-7,tabansi_cagle,Healthy Spinach Idli Recipe (Steamed Spinach Savory Cake),2023-03-03,breakfast,647,36,10,15
-8,tabansi_cagle,Chicken Barbecue Pizza Recipe ,2023-03-03,lunch,440,36,14,12
-9,tabansi_cagle,Punjabi Kadhi Pakora Recipe,2023-03-03,dinner,711,37,11,17
-10,maureen_yeates,Carrot Ginger Juice Recipe,2023-03-03,breakfast,620,28,16,18
-11,maureen_yeates,Kandathippili Rasam Recipe - Long Pepper Rasam,2023-03-03,lunch,502,31,15,16
-12,maureen_yeates,Vegetarian Sloppy Joe Recipe ,2023-03-03,dinner,585,40,9,13
-13,marvelle_massa,Mixed Vegetable Sagu Recipe - Karnataka Style Vegetable Kurma Recipe,2023-03-03,breakfast,531,35,13,13
-14,marvelle_massa,Awadhi Style Khatti Arbi Ka Salan Recipe - Roz Ka Khana With Figaro Olive Oil,2023-03-03,lunch,717,37,13,19
-15,marvelle_massa,Fettuccine Pasta Recipe In Tomato Basil Sauce,2023-03-03,dinner,629,41,15,13
-16,becse_massa,Besan Aur Pyaz Ka Cheela Recipe - Roz Ka Khana With Figaro Olive Oil,2023-03-03,breakfast,628,28,17,17
-17,becse_massa,Sadya Parippu Recipe - Kerala Style Lentils,2023-03-03,lunch,438,41,18,17
-18,becse_massa,Punjabi Kadhi Pakora Recipe - Delicious Punjabi Kadhi,2023-03-03,dinner,579,46,13,14
-19,esteban_hoag,Ragi Oatmeal Kanji Recipe - Healthy Diabetic Porridge Recipe,2023-03-03,breakfast,528,35,18,19
-20,esteban_hoag,Broccoli Chilli Noodles With Grilled Salmon Recipe,2023-03-03,lunch,640,36,15,9
-21,esteban_hoag,Homemade Roasted Bell Pepper Pasta Sauce Recipe ,2023-03-03,dinner,639,36,15,14
-22,chad_nalls,High Protein Spinach Basil & Cheese Omelette Recipe,2023-03-03,breakfast,570,31,14,12
-23,chad_nalls,Chicken Spaghetti in Tomato Basil Sauce Recipe,2023-03-03,lunch,521,40,9,13
-24,chad_nalls,Paneer Makhani Recipe-Restaurant Style Recipe,2023-03-03,dinner,653,38,17,15
-25,yuri_hon,Besan Methi Paratha Recipe ,2023-03-03,breakfast,524,46,12,12
-26,yuri_hon,Milagu Kozhambu Recipe,2023-03-03,lunch,697,35,11,15
-27,yuri_hon,Healthy Lauki Kofta Curry Recipe | Non Fried Bottle Gourd Kofta Curry | Dhoodi Kofta,2023-03-03,dinner,802,25,9,12
-28,dade_gastelum,Stuffed Yellow Moong Dal And Onion Paratha Recipe ,2023-03-03,breakfast,459,32,11,15
-29,dade_gastelum,Sindhi Kadhi Recipe,2023-03-03,lunch,633,41,14,11
-30,dade_gastelum,Vegetarian Pad Thai Recipe - Thai style Stir fried Vegetarian Rice Noodle Dish,2023-03-03,dinner,577,31,6,11
-31,lacey_valenta,Carrot Matar Paratha Recipe,2023-03-04,breakfast,500,31,10,11
-32,lacey_valenta,Gujarati Batata Pulao Recipe - Sweet And Spicy Pulao With Lentils And Potatoes,2023-03-04,lunch,664,26,10,11
-33,lacey_valenta,Capsicum Curry Recipe,2023-03-04,dinner,589,39,17,10
-34,wendell_cervantez,Spicy Moroccan Eggs Recipe,2023-03-04,breakfast,448,42,15,19
-35,wendell_cervantez,Uttarakhand Style Black Gram Chainsoo Recipe,2023-03-04,lunch,495,44,20,14
-36,wendell_cervantez,Penne Pasta In White Sauce Recipe,2023-03-04,dinner,573,40,14,13
-37,tabansi_cagle,Mangalorean Style Kayi Vade Recipe (Coconut and Rice Flour Fried Bread Recipe),2023-03-04,breakfast,661,34,10,18
-38,tabansi_cagle,Pazhutha Manga Pachadi Recipe - Kerala Style Ripe Mango Curry,2023-03-04,lunch,613,32,8,8
-39,tabansi_cagle,Penne Pasta In White Sauce Recipe,2023-03-04,dinner,623,34,12,12
-40,maureen_yeates,Instant Masala Oats Kuzhi Paniyaram Recipe,2023-03-04,breakfast,607,33,19,12
-41,maureen_yeates,Khandeshi Sev Bhaji Recipe,2023-03-04,lunch,633,46,18,20
-42,maureen_yeates,Pasta In Pudina Chutney Sauce - A Indian Fusion Recipe,2023-03-04,dinner,532,31,18,13
-43,marvelle_massa,Aval Upma Recipe - South Indian Style Poha,2023-03-04,breakfast,737,38,12,13
-44,marvelle_massa,Pasi Paruppu Kosumalli Recipe (Spiced Lentil Salad Recipe),2023-03-04,lunch,600,43,12,15
-45,marvelle_massa,Moroccan Roast Chicken with Apricots Recipe,2023-03-04,dinner,699,48,12,14
-46,becse_massa,Spicy Quinoa Upma Recipe,2023-03-04,breakfast,536,31,17,11
-47,becse_massa,Pasi Paruppu Kosumalli Recipe (Spiced Lentil Salad Recipe),2023-03-04,lunch,638,34,11,12
-48,becse_massa,Gujarati Biraj Recipe - Saffron Flavored Sweet Lentil Rice With Dry Fruits & Coconut,2023-03-04,dinner,619,36,13,13
-49,esteban_hoag,French Toast Oatmeal Bake Recipe,2023-03-04,breakfast,422,35,17,10
-50,esteban_hoag,Mexican Sizzler Recipe,2023-03-04,lunch,545,22,15,11
-51,esteban_hoag,Hyderabadi Laziz Lamb Handi Recipe,2023-03-04,dinner,567,40,15,14
-52,chad_nalls,Whole Wheat Chocolate Chip Pancakes With Apples Recipe,2023-03-04,breakfast,531,29,16,14
-53,chad_nalls,Bhindi Huli Recipe - South Indian Style Tangy Okra,2023-03-04,lunch,465,38,14,11
-54,chad_nalls,Chicken Keema Biryani Recipe,2023-03-04,dinner,524,32,15,14
-55,yuri_hon,Bullseye On Toast Recipe ,2023-03-04,breakfast,587,32,22,12
-56,yuri_hon,Lauki Ka Salan Recipe - Bottle Gourd Salan Recipe,2023-03-04,lunch,675,24,10,14
-57,yuri_hon,Paplet Hooman Recipe - Goan Pomfret Curry,2023-03-04,dinner,730,35,14,19
-58,dade_gastelum,Mango & Fruit Filled Creme Crepe Recipe,2023-03-04,breakfast,393,37,13,19
-59,dade_gastelum,Chicken Mapas Recipe - Chicken in Coconut Milk Curry,2023-03-04,lunch,466,26,17,11
-60,dade_gastelum,Mughlai Aloo Lajawab Recipe - Mughlai Aloo Sabzi Recipe,2023-03-04,dinner,462,42,11,14
-61,lacey_valenta,Fluffy Buttermilk Pancake Recipe,2023-03-05,breakfast,610,32,16,17
-62,lacey_valenta,Karnataka Special Huli Tovve Recipe,2023-03-05,lunch,616,50,15,17
-63,lacey_valenta,Whole Wheat Soya Keema Kulchas,2023-03-05,dinner,641,32,16,11
-64,wendell_cervantez,Tomato Jam Recipe,2023-03-05,breakfast,737,22,12,16
-65,wendell_cervantez,Senai Kizhangu Gotsu Recipe - Spicy & Tangy Yam Curry Recipe,2023-03-05,lunch,701,36,14,11
-66,wendell_cervantez,Vegetable Pasta Soup Recipe,2023-03-05,dinner,624,33,14,13
-67,tabansi_cagle,Basil And Mushroom Toast With Thai Red Chilli Recipe,2023-03-05,breakfast,495,34,13,13
-68,tabansi_cagle,One Pot Masala Vegetable Rice Recipe,2023-03-05,lunch,515,38,18,16
-69,tabansi_cagle,"Barley Salad With Mint, Cucumber & Olives",2023-03-05,dinner,630,39,16,16
-70,maureen_yeates,Ari Pathiri Recipe | Malabar Rice Flatbread Recipe,2023-03-05,breakfast,656,24,14,11
-71,maureen_yeates,Kashmiri Style Mutton Gogji Syun Recipe - Mutton & Turnip,2023-03-05,lunch,726,30,19,11
-72,maureen_yeates,Maa Ki Dal Recipe - Punjabi Style Black Urad Dal Recipe,2023-03-05,dinner,576,33,12,12
-73,marvelle_massa,Eggless Bread Omelette Recipe,2023-03-05,breakfast,484,32,10,6
-74,marvelle_massa,Awadhi Style Khatti Arbi Ka Salan Recipe - Roz Ka Khana With Figaro Olive Oil,2023-03-05,lunch,529,42,15,14
-75,marvelle_massa,Malai Matar Paneer Recipe (Cottage Cheese & Peas In Rich Creamy Gravy),2023-03-05,dinner,624,40,14,14
-76,becse_massa,Konkani Style Cabbage Sanna Polo Recipe - Savory Cabbage Dosa,2023-03-05,breakfast,526,32,16,16
-77,becse_massa,Turkish Chicken Gozleme Recipe-Stuffed Spinach Chicken Bread,2023-03-05,lunch,545,36,8,12
-78,becse_massa,Chettinad Vegetable Pulao Recipe,2023-03-05,dinner,731,38,19,15
-79,esteban_hoag,Cream Cheese Scrambled Eggs Recipe,2023-03-05,breakfast,407,27,18,16
-80,esteban_hoag,No Onion No Garlic Aloo Makhana Sabzi Recipe,2023-03-05,lunch,712,40,13,19
-81,esteban_hoag,Hunase Saaru Recipe - Mysore Style Spicy Tamarind Rasam,2023-03-05,dinner,508,28,10,10
-82,chad_nalls,Brown Rice Kozhukattai Recipe - Savory Brown Rice Dumplings,2023-03-05,breakfast,586,37,13,19
-83,chad_nalls,Jeera Hing Aloo Recipe - No Onion No Garlic Recipe,2023-03-05,lunch,532,25,10,15
-84,chad_nalls,Mutton Keema Recipe,2023-03-05,dinner,670,34,15,12
-85,yuri_hon,Kodava Ellu Pajji Recipe - Sesame & Tamarind Chutney,2023-03-05,breakfast,692,37,16,8
-86,yuri_hon,Honey and Sesame Tossed Flat Noodles with Toasted Tofu Recipe,2023-03-05,lunch,548,34,13,16
-87,yuri_hon,Spiced Cauliflower And Almond Soup Recipe,2023-03-05,dinner,773,27,11,21
-88,dade_gastelum,Andhra Style Multi Lentil Garelu (Vada Recipe),2023-03-05,breakfast,563,46,12,14
-89,dade_gastelum,Pacha Payir Kulambu Recipe (South Indian Style Green Gram Curry),2023-03-05,lunch,640,38,14,14
-90,dade_gastelum,Mushroom & Bean Sloppy Joe Recipe,2023-03-05,dinner,575,26,13,12
-91,lacey_valenta,Karnataka Style Sabsige Soppu Akki Rotti (Dill leaves and flattened Rice Bread Recipe),2023-03-06,breakfast,746,37,17,15
-92,lacey_valenta,Milagu Rasam Recipe - Miriyala Charu | Pepper Rasam With Fresh Ground Rasam Powder,2023-03-06,lunch,453,39,14,10
-93,lacey_valenta,Spicy Minced Chicken Keema Balls Curry Recipe,2023-03-06,dinner,472,41,11,15
-94,wendell_cervantez,Chocolate Chip Oat Bran Cereal Recipe With Fruits & Nuts,2023-03-06,breakfast,613,36,14,12
-95,wendell_cervantez,Mushroom Methi Brown Rice Recipe,2023-03-06,lunch,505,41,14,9
-96,wendell_cervantez,Reshmi Kofta Recipe in Rich Cashew Gravy,2023-03-06,dinner,670,34,11,11
-97,tabansi_cagle,Egg Dosa Recipe,2023-03-06,breakfast,459,27,13,14
-98,tabansi_cagle,Rajasthani Dal Baaple Churma Recipe,2023-03-06,lunch,613,38,20,19
-99,tabansi_cagle,Bajri Ki Roti Recipe,2023-03-06,dinner,440,38,11,11
-100,maureen_yeates,Hot Coffee Latte Recipe,2023-03-06,breakfast,652,40,13,12
-101,maureen_yeates,Dubki Wale Aloo Recipe - Potatoes In A Spicy North Indian Gravy,2023-03-06,lunch,726,30,17,7
-102,maureen_yeates,Creamy Mixed Vegetable Risotto Recipe,2023-03-06,dinner,784,36,10,15
-103,marvelle_massa,Thai Style Kai Jeow Moo Sab Recipe - Omelette with minced Chicken,2023-03-06,breakfast,525,42,14,11
-104,marvelle_massa,Bharwa Bhindi And Pyaaz Ki Sabzi Recipe,2023-03-06,lunch,747,26,11,12
-105,marvelle_massa,Aloo Bilahi Maas Recipe - Assamese Fish Curry With Potatoes And Tomatoes,2023-03-06,dinner,701,41,10,17
-106,becse_massa,Eggs Benedict With Caramelised Onion And Hollandaise Sauce Recipe,2023-03-06,breakfast,599,27,15,12
-107,becse_massa,Jowar Bajra Garlic Roti Recipe,2023-03-06,lunch,531,41,16,15
-108,becse_massa,Carrot Beans Thoran Recipe - Kerala Thoran For Onam Sadya,2023-03-06,dinner,621,39,17,13
-109,esteban_hoag,Avocado Salsa Open Multigrain Toast With Fried Egg Recipe,2023-03-06,breakfast,790,31,17,16
-110,esteban_hoag,Stuffed Kathal Recipe ,2023-03-06,lunch,593,28,16,17
-111,esteban_hoag,Coriander Semiya Recipe - Vermicelli Pulao,2023-03-06,dinner,389,40,12,12
-112,chad_nalls,Cucumber Neer Dosa Recipe-Rice Pancake ,2023-03-06,breakfast,517,44,12,16
-113,chad_nalls,Mustard Prawns In Coconut Recipe,2023-03-06,lunch,416,34,18,13
-114,chad_nalls,Baked Creamy Potato Gratin Recipe,2023-03-06,dinner,667,38,13,17
-115,yuri_hon,Bengali Chirer Pulao Recipe - Bengali Style Vegetable Poha,2023-03-06,breakfast,562,45,12,9
-116,yuri_hon,Egg Pulao Recipe,2023-03-06,lunch,461,38,14,16
-117,yuri_hon,Egg Salad Recipe With Sun Dried Tomatoes And Scallions,2023-03-06,dinner,604,40,15,15
-118,dade_gastelum,Carrot Bran Breakfast Muffin Recipe,2023-03-06,breakfast,495,38,14,6
-119,dade_gastelum,Mini Dal Samosa Curry/Sabzi Recipe,2023-03-06,lunch,734,27,17,11
-120,dade_gastelum,Hunan Style Sweet Sour Chicken Recipe,2023-03-06,dinner,521,36,16,14
-121,lacey_valenta,Oats and Coconut Muffins Recipe - Spiced with Chai Masala,2023-03-07,breakfast,539,41,15,13
-122,lacey_valenta,Tomato Kurma Recipe - Thakkali Kurma For Biryani & Parotta,2023-03-07,lunch,644,34,13,18
-123,lacey_valenta,Tamatar Gosht Recipe-Mutton In Tomato Curry,2023-03-07,dinner,504,45,10,14
-124,wendell_cervantez,Iyengar Style Thavala Adai Recipe,2023-03-07,breakfast,353,36,15,14
-125,wendell_cervantez,Rajasthani Ghasela Recipe (Besan Ka Pitta),2023-03-07,lunch,713,35,17,7
-126,wendell_cervantez,Crisp Baked Tandoori Mayo Cheddar Chicken Recipe,2023-03-07,dinner,508,34,18,11
-127,tabansi_cagle,Egg Lifafa Paratha Recipe,2023-03-07,breakfast,537,44,16,15
-128,tabansi_cagle,Niramish Aloo Dum Recipe,2023-03-07,lunch,512,30,10,14
-129,tabansi_cagle,Mushroom & Bean Sloppy Joe Recipe,2023-03-07,dinner,721,36,15,15
-130,maureen_yeates,"Mushroom, Spinach & Herbs Frittata with Egg White Recipe",2023-03-07,breakfast,657,29,18,12
-131,maureen_yeates,Kolhapuri Akkha Masoor Dal Recipe (Masoor Dal in Kholapuri Masala) ,2023-03-07,lunch,579,41,16,19
-132,maureen_yeates,Zucchini Roll Up Lasagne Recipe,2023-03-07,dinner,736,22,12,15
-133,marvelle_massa,French Toast Jam Roll Ups Recipe,2023-03-07,breakfast,720,42,10,18
-134,marvelle_massa,Peanut Butter Chocolate Oatmeal Bars Recipe,2023-03-07,lunch,387,44,13,16
-135,marvelle_massa,Cheese And Corn Tostadas Recipe,2023-03-07,dinner,473,40,11,20
-136,becse_massa,Goan Style Sana Recipe (Soft Steamed Rice Cakes) ,2023-03-07,breakfast,718,35,9,15
-137,becse_massa,Masala Vada Curry Recipe - Chana Dal Vada Curry Recipe,2023-03-07,lunch,481,39,7,14
-138,becse_massa,Whole Wheat Soya Keema Kulchas,2023-03-07,dinner,765,32,8,14
-139,esteban_hoag,Instant Oats Rava Idli Recipe,2023-03-07,breakfast,728,28,18,13
-140,esteban_hoag,Aava Pettina Majjiga Pulusu Recipe - Andhra Style Mor Kuzhambu,2023-03-07,lunch,656,33,15,14
-141,esteban_hoag,Murgh Ajmeri Recipe,2023-03-07,dinner,595,26,14,14
-142,chad_nalls,Medu Vada Recipe (Traditional Fried Urad Dal Vada Using Vada Maker),2023-03-07,breakfast,659,39,9,13
-143,chad_nalls,Mambhazam Pulissery Recipe,2023-03-07,lunch,678,28,14,15
-144,chad_nalls,Spiced Kumbh Pulao Recipe - Spicy Mushroom Rice,2023-03-07,dinner,526,30,12,18
-145,yuri_hon,"Whole Wheat Pizza With Egg, Bell Peppers And Fresh Basil Recipe",2023-03-07,breakfast,600,42,18,15
-146,yuri_hon,Bhatura Recipe (Fried Puffed Yogurt Bread),2023-03-07,lunch,610,46,17,16
-147,yuri_hon,Rustic Cottage Pie With Mushroom Sauce Recipe,2023-03-07,dinner,651,35,16,15
-148,dade_gastelum,Cheese Walnut Toast Recipe,2023-03-07,breakfast,751,52,13,13
-149,dade_gastelum,Chana Kanghou Recipe - Manipuri Style Kala Chana Sabzi,2023-03-07,lunch,771,36,14,17
-150,dade_gastelum,Baked Roasted Pumpkin Penne Pasta With Tomato Basil Sauce Recipe,2023-03-07,dinner,466,44,12,6
-151,lacey_valenta,Potato Pancakes Recipe,2023-03-08,breakfast,602,43,14,16
-152,lacey_valenta,Konkani Style Mooga Ghushi Recipe-Sprouted Whole Green Gram In Tangy Coconut Gravy,2023-03-08,lunch,617,17,12,14
-153,lacey_valenta,Chilli Coriander Fried Rice Recipe,2023-03-08,dinner,580,38,17,14
-154,wendell_cervantez,Kerala Style Chakka Adai Recipe-Rice Flour and Jackfruit Flatbread,2023-03-08,breakfast,599,39,17,14
-155,wendell_cervantez,Paneer Biryani Recipe,2023-03-08,lunch,581,46,18,11
-156,wendell_cervantez,Meen Peera (Kerala Style Fish Recipe With Shredded Coconut),2023-03-08,dinner,482,36,7,11
-157,tabansi_cagle,Methi Thalipeeth Recipe (Fresh Fenugreek Leaves Flat Bread) ,2023-03-08,breakfast,598,41,18,13
-158,tabansi_cagle,Motiya Chilman Pulao Recipe - Vegetable Rice Topped With Paneer Balls,2023-03-08,lunch,744,34,13,15
-159,tabansi_cagle,Roasted Tomato And Basil Bruschetta Recipe,2023-03-08,dinner,642,33,12,10
-160,maureen_yeates,Oats Uttapam topped with Paneer Recipe,2023-03-08,breakfast,679,35,15,11
-161,maureen_yeates,Chettinad Takkali Sadam Recipe (Chettinad Style Tomato Rice),2023-03-08,lunch,656,35,13,16
-162,maureen_yeates,Roasted Zucchini Caprese Salad Rolls Recipe,2023-03-08,dinner,647,46,15,11
-163,marvelle_massa,Delicious Breakfast Anda Ghotala Recipe With Butter Pav,2023-03-08,breakfast,652,37,18,10
-164,marvelle_massa,Sesame Peanut Potato Mix Recipe,2023-03-08,lunch,546,33,12,12
-165,marvelle_massa,Punjabi Kadhi Pakora Recipe,2023-03-08,dinner,763,24,18,12
-166,becse_massa,Orange Cranberry Cupcakes Recipe,2023-03-08,breakfast,559,49,12,7
-167,becse_massa,Asian Style Honey Chicken With Vegetables Recipe,2023-03-08,lunch,645,31,7,14
-168,becse_massa,Pita Sandwich With Cauliflower Falafel And Roasted Vegetables Recipe,2023-03-08,dinner,772,23,16,11
-169,esteban_hoag,Instant Masala Oats Kuzhi Paniyaram Recipe,2023-03-08,breakfast,552,39,13,16
-170,esteban_hoag,Bharva Baingan Masala Recipe - Stuffed Brinjal Masala ,2023-03-08,lunch,740,29,13,15
-171,esteban_hoag,Ultimate Potato Gratin Dauphinois,2023-03-08,dinner,557,33,16,16
-172,chad_nalls,Javvarisi Dosa Recipe - Soft & Instant Sabudana Dosa Recipe,2023-03-08,breakfast,520,28,15,14
-173,chad_nalls,Karnataka Style Mixed Vegetable Pulao Recipe,2023-03-08,lunch,561,36,17,15
-174,chad_nalls,Moroccan Roast Chicken with Apricots Recipe,2023-03-08,dinner,479,34,9,9
-175,yuri_hon,Baked Pumpkin Cream Cheese French Toast Recipe - Breakfast Bread Pudding Recipe,2023-03-08,breakfast,634,25,14,17
-176,yuri_hon,Kashmiri Style Kokur Yakhni Recipe-Chicken Cooked In Yogurt,2023-03-08,lunch,635,43,18,12
-177,yuri_hon,Tandoori Chickpea & Cauliflower Curry Recipe (Vegan Curry),2023-03-08,dinner,698,36,12,16
-178,dade_gastelum,Crunchy Ragi And Oats Breakfast Bowl Recipe,2023-03-08,breakfast,794,39,8,15
-179,dade_gastelum,Paneer Shashlik Recipe,2023-03-08,lunch,631,38,11,12
-180,dade_gastelum,Maa Ki Dal Recipe - Punjabi Style Black Urad Dal Recipe,2023-03-08,dinner,452,33,16,15
-181,lacey_valenta,Watermelon Carrot Radish Juice Recipe,2023-03-09,breakfast,430,39,19,15
-182,lacey_valenta,Gongura Chicken Curry Recipe - Andhra Style Gongura Chicken,2023-03-09,lunch,608,41,14,13
-183,lacey_valenta,Spiced Watermelon Curry Recipe With Carrots & Peppers,2023-03-09,dinner,545,45,13,16
-184,wendell_cervantez,Egg Muffin With Vegetables Recipe,2023-03-09,breakfast,761,34,14,16
-185,wendell_cervantez,Hariyali Dum Aloo Recipe - Potatoes In Spinach Mint Curry,2023-03-09,lunch,536,37,12,11
-186,wendell_cervantez,Cauliflower Paneer Kofta Curry Recipe,2023-03-09,dinner,563,33,13,16
-187,tabansi_cagle,Bihari Chana Dal Puri Recipe,2023-03-09,breakfast,469,36,14,18
-188,tabansi_cagle,Raw Jackfruit Burrito Recipe ,2023-03-09,lunch,614,28,13,19
-189,tabansi_cagle,Dry Palak Dal Sabzi Recipe,2023-03-09,dinner,512,36,17,15
-190,maureen_yeates,German Pancakes with Caramelised Apples Recipe ,2023-03-09,breakfast,688,25,14,15
-191,maureen_yeates,Suran Moongphali Curry Recipe (Yam/Jimikand Curry with Peanuts),2023-03-09,lunch,637,37,13,17
-192,maureen_yeates,Spicy Tacos With Creamy Apple Slaw & Crispy Sriracha Corn,2023-03-09,dinner,563,26,18,13
-193,marvelle_massa,Shredded Chicken Cheese Sandwich Recipe,2023-03-09,breakfast,675,39,17,16
-194,marvelle_massa,Himachali Style Pahari Aloo Palda Recipe - Potatoes In Yogurt Gravy,2023-03-09,lunch,703,31,17,16
-195,marvelle_massa,Maa Ki Dal Recipe - Punjabi Style Black Urad Dal Recipe,2023-03-09,dinner,541,35,7,11
-196,becse_massa,Lauki Thepla Recipe,2023-03-09,breakfast,836,26,14,13
-197,becse_massa,Bengali Style Chori Recipe-Mixed Vegetable Sabzi,2023-03-09,lunch,528,45,16,18
-198,becse_massa,Aavryachi Bhaji-Avarakkai Poriyal Recipe-Broad Beans Stir Fry,2023-03-09,dinner,446,28,14,18
-199,esteban_hoag,Parmesan And Fresh Herbs Savoury Scones Recipe,2023-03-09,breakfast,579,25,14,17
-200,esteban_hoag,Gobi and Soya Keema Recipe,2023-03-09,lunch,609,35,10,15
-201,esteban_hoag,Lahsuni Dal Tadka -Moong Dal with Pumpkin,2023-03-09,dinner,770,30,13,16
-202,chad_nalls,Whole Wheat Strawberry Banana Muffins Recipe,2023-03-09,breakfast,599,44,9,14
-203,chad_nalls,Kathirikai Poondu Pirattal Recipe - South Indian Style Brinjal Stir Fry With Garlic,2023-03-09,lunch,655,32,15,13
-204,chad_nalls,Aloo Potol Posto Recipe (Aloo Parwal in Poppy Seed Masala Recipe),2023-03-09,dinner,626,38,15,10
-205,yuri_hon,Whole Wheat Homemade English Muffins Recipe,2023-03-09,breakfast,596,35,12,14
-206,yuri_hon,Gobi Ke Kofte Recipe (Cauliflower Fritters In Spicy Gravy),2023-03-09,lunch,403,29,18,14
-207,yuri_hon,Chilli Ginger Vegetable Tofu Stir Fry Recipe,2023-03-09,dinner,446,38,12,12
-208,dade_gastelum,Rose Flavoured Golden Almond Milk Recipe - Badam Doodh,2023-03-09,breakfast,616,34,16,14
-209,dade_gastelum,Bhindi With Cashews & Coconut Sabzi Recipe,2023-03-09,lunch,652,37,12,20
-210,dade_gastelum,No-Bake Tangy Lemon Pie Recipe,2023-03-09,dinner,529,29,14,16
+1,lacey_valenta,Cucumber Neer Dosa Recipe-Rice Pancake ,2023-03-03,breakfast,547,35,12,15
+2,lacey_valenta,Shahi Dal Recipe ,2023-03-03,lunch,510,34,6,8
+3,lacey_valenta,Herbed Dinner Rolls Recipe,2023-03-03,dinner,464,37,12,19
+4,wendell_cervantez,Pudina Idli Recipe - Mint Flavoured Idli  ,2023-03-03,breakfast,536,20,13,14
+5,wendell_cervantez,Tomato Rice With Basil Recipe,2023-03-03,lunch,655,43,13,13
+6,wendell_cervantez,Andhra Style Mutton Curry Recipe,2023-03-03,dinner,577,35,11,17
+7,tabansi_cagle,Mango Smoothie Bowl Recipe,2023-03-03,breakfast,556,37,16,14
+8,tabansi_cagle,Ulava Charu Recipe - Spicy Andhra Horse Gram Rasam ,2023-03-03,lunch,786,33,14,16
+9,tabansi_cagle,Penne Rigate With Minced Chicken Sauce & Cheese Recipe,2023-03-03,dinner,710,33,14,14
+10,maureen_yeates,Ragi Appam Recipe - A Healthy Twist To The Classic Kerala Appam ,2023-03-03,breakfast,774,51,17,16
+11,maureen_yeates,Aubergine Layered Baked Corn Cheese Quinoa Pasta Recipe,2023-03-03,lunch,589,34,15,15
+12,maureen_yeates,Kongunadu Kathirikai Rasam Recipe - Spicy & Tangy Eggplant Rasam,2023-03-03,dinner,553,34,19,12
+13,marvelle_massa,Banana And Mango Smoothie Recipe ,2023-03-03,breakfast,614,36,13,11
+14,marvelle_massa,Sindhi Kadhi Recipe,2023-03-03,lunch,629,36,16,14
+15,marvelle_massa,Tofu Stir Fry Curry Recipe,2023-03-03,dinner,772,41,15,12
+16,becse_massa,Karwar Style Kalingana Polo Recipe - Watermelon Rind Dosa,2023-03-03,breakfast,494,32,14,18
+17,becse_massa,Tomato Quinoa Recipe  - With A South Indian Twist,2023-03-03,lunch,522,31,18,13
+18,becse_massa,Hyderabadi Laziz Lamb Handi Recipe,2023-03-03,dinner,448,38,16,12
+19,esteban_hoag,Quick Masala French Toast Recipe,2023-03-03,breakfast,563,32,15,15
+20,esteban_hoag,Chow Chow Sambar Recipe (Chayote Squash Sambar),2023-03-03,lunch,569,30,13,14
+21,esteban_hoag,Smoked Tofu And Grilled Vegetable Salad Recipe,2023-03-03,dinner,498,40,17,17
+22,chad_nalls,Khaman Dhokla Poha Recipe,2023-03-03,breakfast,706,38,17,14
+23,chad_nalls,Tomato Kurma Recipe - Thakkali Kurma For Biryani & Parotta,2023-03-03,lunch,741,26,13,14
+24,chad_nalls,Begun Bhaja Recipe (Bengali Style Spiced And Fried Aubergine Slices),2023-03-03,dinner,537,29,16,8
+25,yuri_hon,Ragi Kanji Recipe - Salt Version,2023-03-03,breakfast,816,35,13,13
+26,yuri_hon,Muttai Podimas Recipe - Chettinad Egg Scramble ,2023-03-03,lunch,797,29,14,15
+27,yuri_hon,Mixed Vegetable Spaghetti Pasta Recipe,2023-03-03,dinner,651,38,12,13
+28,dade_gastelum,Mini Hash Brown Quiche Recipe,2023-03-03,breakfast,478,32,14,23
+29,dade_gastelum,Kodava Pacche Baale Barthad- Raw Banana Stir Fry,2023-03-03,lunch,547,26,17,13
+30,dade_gastelum,Layered Thai Basil & Tofu Rice Recipe,2023-03-03,dinner,585,48,11,15
+31,lacey_valenta,Spiced Rice Breakfast Porridge Recipe,2023-03-04,breakfast,543,27,14,17
+32,lacey_valenta,Pasi Paruppu Masiyal Recipe-Green Moong Dal Curry Recipe,2023-03-04,lunch,650,37,13,14
+33,lacey_valenta,Maa Ki Dal Recipe - Punjabi Style Black Urad Dal Recipe,2023-03-04,dinner,783,39,17,13
+34,wendell_cervantez,Sundaikkai Godumai Rava Upma Recipe,2023-03-04,breakfast,583,28,12,20
+35,wendell_cervantez,Konkan Style Modachya Moongachi Amti Recipe-Sprouted Moong Bean Curry,2023-03-04,lunch,547,34,15,18
+36,wendell_cervantez,Dhaba Style Egg Curry Recipe in Electric Pressure Cooker,2023-03-04,dinner,559,33,13,17
+37,tabansi_cagle,Akoori with Green Peas Recipe (Parsi Style Scrambled Eggs with Green Peas) ,2023-03-04,breakfast,540,39,14,17
+38,tabansi_cagle,Kerala Pumpkin Black Eyed Beans Erissery Recipe,2023-03-04,lunch,699,30,15,13
+39,tabansi_cagle,Curried Sweet Potato Mexican Fajita Recipe,2023-03-04,dinner,602,43,10,13
+40,maureen_yeates,Karnataka Style Gorai Kai Kara Recipe - Cluster Beans Chutney,2023-03-04,breakfast,570,30,16,13
+41,maureen_yeates,Aratikaya Masala Pulusu Recipe - Raw Banana Stir Fry,2023-03-04,lunch,623,46,22,8
+42,maureen_yeates,Creamy Chicken Pesto Spaghetti Pasta Recipe,2023-03-04,dinner,697,33,14,14
+43,marvelle_massa,Egg In A Biscuit Recipe,2023-03-04,breakfast,498,40,12,14
+44,marvelle_massa,Kara Sevai Recipe (Lemon Vermicelli),2023-03-04,lunch,567,26,12,16
+45,marvelle_massa,Aar Macher Jhol Recipe - Bengali Style Fish In Tomato Gravy,2023-03-04,dinner,615,40,13,14
+46,becse_massa,Togarikalu Akki Recipe - Karnataka Style Rice Rava Upma with Fresh Pigeon Peas,2023-03-04,breakfast,403,34,12,14
+47,becse_massa,Aloo Matar Korma Recipe In White Gravy,2023-03-04,lunch,614,50,17,9
+48,becse_massa,Creamy Potato Egg Salad Recipe with Herbs,2023-03-04,dinner,703,47,14,13
+49,esteban_hoag,Aloo Paratha Recipe - Healthy North Indian Breakfast,2023-03-04,breakfast,686,39,17,9
+50,esteban_hoag,Appalam Vatha Kuzhambu Recipe - Papad In Tamarind Gravy,2023-03-04,lunch,696,52,9,11
+51,esteban_hoag,Vegetable Yakhni Pulao Recipe,2023-03-04,dinner,556,34,18,17
+52,chad_nalls,Beans On Toast Recipe,2023-03-04,breakfast,556,40,14,13
+53,chad_nalls,Milagu Kozhambu Recipe,2023-03-04,lunch,570,36,13,10
+54,chad_nalls,Mozzarella & Parmesan Stuffed Meat Balls Recipe,2023-03-04,dinner,594,43,13,17
+55,yuri_hon,Murungai Keerai/Drumstick Leaves Adai Recipe,2023-03-04,breakfast,486,26,9,13
+56,yuri_hon,Big Farm Fresh Pizza Recipe Loaded With Crisp Veggies,2023-03-04,lunch,538,22,13,13
+57,yuri_hon,Whole Wheat & Ragi Crust Skillet Pizza Recipe Topped With Roasted Zucchini & Olives,2023-03-04,dinner,574,36,12,15
+58,dade_gastelum,Goan Style Sana Recipe (Soft Steamed Rice Cakes) ,2023-03-04,breakfast,687,42,19,13
+59,dade_gastelum,Lucknowi Murgh Biryani Recipe - Awadhi Style Chicken Biryani,2023-03-04,lunch,639,37,20,13
+60,dade_gastelum,Hirve Kaalvan Recipe (Fresh Coriander and Coconut Curry),2023-03-04,dinner,613,40,13,18
+61,lacey_valenta,Evergreen Smoothie Recipe ,2023-03-05,breakfast,635,45,17,13
+62,lacey_valenta,Bonda Mor Kuzhambu Recipe,2023-03-05,lunch,691,29,15,12
+63,lacey_valenta,Chettinad Vegetable Pulav Recipe - ,2023-03-05,dinner,402,38,18,13
+64,wendell_cervantez,Spicy Moroccan Eggs Recipe,2023-03-05,breakfast,456,41,16,13
+65,wendell_cervantez,Ellu Sadam Recipe - South Indian Style Til Pulao Recipe,2023-03-05,lunch,578,31,17,11
+66,wendell_cervantez,Kashmiri Phool Rogan Josh Recipe - Cauliflower in Red Curry,2023-03-05,dinner,833,27,15,11
+67,tabansi_cagle,Maheri Recipe,2023-03-05,breakfast,653,37,10,17
+68,tabansi_cagle,Mutton Kothu Kari Cabbage Masala - Mutton Cabbage Keema,2023-03-05,lunch,540,30,13,15
+69,tabansi_cagle,Indo Chinese Chicken Hakka Noodles Recipe,2023-03-05,dinner,396,29,15,14
+70,maureen_yeates,Semolina French Toast Recipe,2023-03-05,breakfast,464,32,16,13
+71,maureen_yeates,Konkan Style Modachya Moongachi Amti Recipe-Sprouted Moong Bean Curry,2023-03-05,lunch,566,27,10,8
+72,maureen_yeates,Mamsaam Chops Recipe (Lamb Chops in Black Pepper Gravy),2023-03-05,dinner,483,32,12,16
+73,marvelle_massa,Masala Sandwich Recipe With Rocket Leaves,2023-03-05,breakfast,456,41,13,21
+74,marvelle_massa,Spinach Rice Recipe - Palak Pulao,2023-03-05,lunch,789,34,15,21
+75,marvelle_massa,Herbed Potato And Green Olive Salad Recipe - A Delicious Summertime Salad,2023-03-05,dinner,858,31,13,13
+76,becse_massa,German Pancakes with Caramelised Apples Recipe ,2023-03-05,breakfast,595,32,13,17
+77,becse_massa,Stuffed Gilka Recipe (Maharashtrian Style Stuffed Silk Squash),2023-03-05,lunch,574,26,13,12
+78,becse_massa,Grilled Tangy Lime Salmon Steak Recipe,2023-03-05,dinner,534,45,18,15
+79,esteban_hoag,Thai Style Paneer Toast Recipe,2023-03-05,breakfast,811,30,11,14
+80,esteban_hoag,Creamy Stuffed Chicken With Pepper Cilantro Sauce Recipe,2023-03-05,lunch,632,37,9,8
+81,esteban_hoag,Crustless Zucchini Pie,2023-03-05,dinner,725,29,15,12
+82,chad_nalls,Spongy Quinoa Idli Recipe,2023-03-05,breakfast,571,38,18,10
+83,chad_nalls,Karnataka Style Sandige Huli Recipe (Toor dal dumplings in Gravy Recipe) ,2023-03-05,lunch,677,35,8,13
+84,chad_nalls,Bengali Aloo Potol er Dalna Recipe - A Traditional Vegetable Side Dish,2023-03-05,dinner,766,41,15,16
+85,yuri_hon,Oats Pesarattu Recipe - Oatmeal & Green Gram Crepes,2023-03-05,breakfast,554,51,12,10
+86,yuri_hon,Prawn Balchao Recipe,2023-03-05,lunch,623,41,16,20
+87,yuri_hon,Kadai Beans And Carrot Pulao Recipe,2023-03-05,dinner,780,41,12,11
+88,dade_gastelum,Foxtail Millet Pongal Recipe,2023-03-05,breakfast,761,26,15,15
+89,dade_gastelum,Kaju Butter Masala Recipe,2023-03-05,lunch,596,41,19,14
+90,dade_gastelum,Spinach Salad Recipe With Boiled Eggs And Mushrooms,2023-03-05,dinner,650,44,12,16
+91,lacey_valenta,Multigrain Methi Thepla Recipe With Ragi & Whole Wheat ,2023-03-06,breakfast,537,42,15,18
+92,lacey_valenta,Bharli Bhendi Recipe - Maharashtrian Style Stuffed Bhindi,2023-03-06,lunch,627,38,16,17
+93,lacey_valenta,Egyptian Koshari Recipe,2023-03-06,dinner,467,26,13,18
+94,wendell_cervantez,Sali Par Eedu Recipe - Parsi Breakfast Eggs On Fried Potato,2023-03-06,breakfast,640,32,13,15
+95,wendell_cervantez,Gujarati Vaghareli Mag Recipe - Whole Green Moong Dal Sabzi Recipe,2023-03-06,lunch,604,32,13,12
+96,wendell_cervantez,No Onion No Garlic Raw Tomato Sabzi Recipe,2023-03-06,dinner,602,34,17,14
+97,tabansi_cagle,Quick & Easy Idli Upma Recipe With Figaro Olive Oil,2023-03-06,breakfast,771,34,11,16
+98,tabansi_cagle,Stuffed Gilka Recipe (Maharashtrian Style Stuffed Silk Squash),2023-03-06,lunch,507,28,14,18
+99,tabansi_cagle,Karwar Style Kairichi Udid Methi Recipe (Raw Mango Methi Curry),2023-03-06,dinner,504,45,18,10
+100,maureen_yeates,Kerala Style Ragi Puttu Recipe - Healthy Diabetic Friendly Recipe,2023-03-06,breakfast,735,43,14,20
+101,maureen_yeates,Maharashtrian Style Dudhi Kajuchi Sonari Amti Recipe - Bottle Gourd And Cashew Nut Sabzi,2023-03-06,lunch,453,35,12,10
+102,maureen_yeates,No Onion No Garlic Lobia Masala Recipe In Electric Pressure Cooker,2023-03-06,dinner,693,39,17,12
+103,marvelle_massa,Coconut Banana Oatmeal Porridge Recipe,2023-03-06,breakfast,518,38,16,17
+104,marvelle_massa,Red Capsicum Poriyal Recipe - Red Bell Pepper Stir Fry,2023-03-06,lunch,574,41,15,10
+105,marvelle_massa,Chatpata Aloo Chaat Taco Recipe With Sour Cream & Salad,2023-03-06,dinner,334,46,16,10
+106,becse_massa,Foxtail Millet Vermicelli Upma Recipe ,2023-03-06,breakfast,643,39,16,17
+107,becse_massa,Bhoplyache Gharge Recipe (Maharashtrian Style Sweet Pumpkin Puris),2023-03-06,lunch,499,35,14,6
+108,becse_massa,Chettinad Vegetable Pulao Recipe,2023-03-06,dinner,590,42,18,12
+109,esteban_hoag,Gojju Avalakki Recipe - Puli Aval ,2023-03-06,breakfast,474,28,11,16
+110,esteban_hoag,Paneer Bhutuwa Recipe -Nepalese Paneer Curry,2023-03-06,lunch,552,36,16,16
+111,esteban_hoag,Kadai Paneer Recipe - Spiced Cottage Cheese With Green Bell Peppers,2023-03-06,dinner,461,41,15,8
+112,chad_nalls,Mini Onion Vada With Vengaya Sambar Recipe - Pan Fried Fritters in Tangy Lentil Curry,2023-03-06,breakfast,559,29,4,15
+113,chad_nalls,Buttered Peas Puree Recipe For Babies Above 6 months,2023-03-06,lunch,588,33,12,17
+114,chad_nalls,Tamatar Gosht Recipe-Mutton In Tomato Curry,2023-03-06,dinner,704,29,11,13
+115,yuri_hon,Aloo Methi Paratha Recipe,2023-03-06,breakfast,571,41,15,18
+116,yuri_hon,Daal Pithi Recipe,2023-03-06,lunch,621,25,12,11
+117,yuri_hon,How To Cook Pasta | Penne - Spaghetti - Fusilli - Farfalle ,2023-03-06,dinner,481,36,14,8
+118,dade_gastelum,Spicy and Tangy Mixed Vegetable Poha Recipe With Peanuts,2023-03-06,breakfast,527,36,15,18
+119,dade_gastelum,Mudaliar Style Omelette Curry Recipe,2023-03-06,lunch,370,35,10,14
+120,dade_gastelum,Roasted Zucchini Caprese Salad Rolls Recipe,2023-03-06,dinner,671,42,13,18
+121,lacey_valenta,Mushroom & Goat Cheese Omelette with Spinach Recipe,2023-03-07,breakfast,588,30,16,13
+122,lacey_valenta,Soya Chunks Sabzi,2023-03-07,lunch,605,31,19,16
+123,lacey_valenta,Chinese Savoury Rice Porridge Recipe With Pumpkin,2023-03-07,dinner,596,41,17,9
+124,wendell_cervantez,Walnut and Flax Seed Trail Mix Recipe With Figs and Honey,2023-03-07,breakfast,566,34,17,14
+125,wendell_cervantez,Crunchy Carrot Peanut Raita Recipe - Gajar Moongphali Raita,2023-03-07,lunch,686,49,17,17
+126,wendell_cervantez,Hariyali Machali Recipe - Carp Fish In Green Spinach And Coriander Gravy,2023-03-07,dinner,582,48,11,15
+127,tabansi_cagle,Spinach and Banana Smoothie With Chia Seeds Recipe,2023-03-07,breakfast,799,33,20,11
+128,tabansi_cagle,Chettinad Poondu Rasam Recipe | Spicy Garlic Rasam,2023-03-07,lunch,553,34,19,17
+129,tabansi_cagle,Easy Spaghetti Recipe In Creamy Tomato Sauce  | Vegetarian & Kid Friendly,2023-03-07,dinner,813,33,12,10
+130,maureen_yeates,Ari Pathiri Recipe | Malabar Rice Flatbread Recipe,2023-03-07,breakfast,575,37,19,18
+131,maureen_yeates,Vempampoo Rice Recipe (Dried Neem Flowers Rice),2023-03-07,lunch,411,34,16,10
+132,maureen_yeates,Mustard Egg Curry Recipe,2023-03-07,dinner,631,35,17,15
+133,marvelle_massa,Sagu Masala Dosa Recipe,2023-03-07,breakfast,661,37,15,15
+134,marvelle_massa,Vietnamese Rice Pocket Recipe With Caramelised Onions & Chillies,2023-03-07,lunch,598,33,12,17
+135,marvelle_massa,Gluten Free Skillet Pizza With Potato and Tapioca,2023-03-07,dinner,551,39,14,14
+136,becse_massa,Egg Kothu Paratha Recipe,2023-03-07,breakfast,553,20,13,10
+137,becse_massa,Brinjal Mor Kuzhambu Recipe,2023-03-07,lunch,681,41,17,20
+138,becse_massa,Macha Mahura Recipe - Odia Style Fish Curry With Vegetables,2023-03-07,dinner,756,38,11,14
+139,esteban_hoag,Avocado Quinoa Breakfast Muffins Recipe,2023-03-07,breakfast,519,32,15,14
+140,esteban_hoag,Gajar Methi Sabzi Recipe (Carrot Fenugreek Leaves Stir Fry),2023-03-07,lunch,779,45,16,16
+141,esteban_hoag,Savoury Crepes with Za'atar Spiced Chicken Recipe,2023-03-07,dinner,616,40,10,15
+142,chad_nalls,Homemade Lemon Sevai Recipe - Lemon Idiyappam Recipe,2023-03-07,breakfast,553,36,11,9
+143,chad_nalls,Doodhibhoplyacha Bharit Recipe - Maharashtrian Style Lauki Bharta,2023-03-07,lunch,572,51,17,12
+144,chad_nalls,Karnataka Style Avarekalu Pulao Recipe - Avarekalu Pulao,2023-03-07,dinner,475,29,13,12
+145,yuri_hon,Sabbakki Rava Idli Recipe- Sabudana Rava Idli ,2023-03-07,breakfast,700,31,16,18
+146,yuri_hon,Masala Akki Roti Recipe - Spicy Rice Flour Flatbread,2023-03-07,lunch,657,42,14,12
+147,yuri_hon,Semiya Biryani Recipe,2023-03-07,dinner,609,34,14,10
+148,dade_gastelum,Breakfast Hash Browns Recipe,2023-03-07,breakfast,562,43,11,12
+149,dade_gastelum,Spicy Schezwan Indo-Chinese Egg Fried Rice Recipe,2023-03-07,lunch,438,37,14,10
+150,dade_gastelum,Broccoli and Mushroom Stir Fry Recipe ,2023-03-07,dinner,539,43,16,14
+151,lacey_valenta,Ari Pathiri Recipe | Malabar Rice Flatbread Recipe,2023-03-08,breakfast,565,29,11,16
+152,lacey_valenta,Mutta Salna Recipe (South Indian Style Egg Drop Gravy),2023-03-08,lunch,570,35,18,19
+153,lacey_valenta,Maharashtrian Masale Baath Recipe - Spicy Vegetable Rice with Goda Masala,2023-03-08,dinner,457,49,18,12
+154,wendell_cervantez,Sooji Halwa Breakfast Bowl Recipe,2023-03-08,breakfast,741,25,16,12
+155,wendell_cervantez,Masala Lachha Paratha Recipe,2023-03-08,lunch,620,46,12,15
+156,wendell_cervantez,Italian Baked Pasta Recipe With Cheese & Bread Crumbs,2023-03-08,dinner,470,34,15,17
+157,tabansi_cagle,Whole Wheat Buttermilk Banana Pancakes Recipes,2023-03-08,breakfast,703,37,11,13
+158,tabansi_cagle,Maharashtrian Chavali Chi Usal Recipe - Black Eyed Peas Curry,2023-03-08,lunch,534,50,14,11
+159,tabansi_cagle,Maize Daliya Khichri Recipe,2023-03-08,dinner,464,38,15,14
+160,maureen_yeates,Medu Vada Recipe (Traditional Fried Urad Dal Vada Using Vada Maker),2023-03-08,breakfast,588,41,14,16
+161,maureen_yeates,Asian Style Honey Chicken With Vegetables Recipe,2023-03-08,lunch,560,22,17,14
+162,maureen_yeates,Pizza With Soy And Corn Recipe,2023-03-08,dinner,528,33,12,20
+163,marvelle_massa,Poha Buttermilk Idli Recipe,2023-03-08,breakfast,431,42,14,18
+164,marvelle_massa,Rajasthani Papad Ki Sabzi Recipe ,2023-03-08,lunch,775,27,13,12
+165,marvelle_massa,Khatua Recipe (Bhojpuri Style Khichdi),2023-03-08,dinner,598,46,8,13
+166,becse_massa,"Vegetable Oatmeal Poha with Peanuts, Coriander & Ginger Recipe",2023-03-08,breakfast,637,37,10,7
+167,becse_massa,Mutta Salna Recipe (South Indian Style Egg Drop Gravy),2023-03-08,lunch,529,34,15,14
+168,becse_massa,Paneer Pav Bhaji Recipe - Wholesome Weeknight Dinner,2023-03-08,dinner,506,26,15,13
+169,esteban_hoag,Home Made Breakfast Granola Recipe,2023-03-08,breakfast,464,32,15,21
+170,esteban_hoag,Posto Pabda (Bengali Fish Curry In Poppy Seeds Paste),2023-03-08,lunch,680,38,13,10
+171,esteban_hoag,Mexican Salsa Chicken With Italian Cream Cheese Recipe,2023-03-08,dinner,651,32,14,15
+172,chad_nalls,Carrot & Cheese Filled Idli Recipe,2023-03-08,breakfast,643,37,13,17
+173,chad_nalls,Coorgi Style Chicken Curry Recipe,2023-03-08,lunch,518,41,16,16
+174,chad_nalls,Chatpata Aloo Chaat Taco Recipe With Sour Cream & Salad,2023-03-08,dinner,530,29,11,16
+175,yuri_hon,Karnataka Style Sabsige Soppu Paddu Recipe (Dill leaves Savory Fritters Recipe) ,2023-03-08,breakfast,508,35,12,16
+176,yuri_hon,Prawns Theeyal Recipe (Chemeen Theeyal),2023-03-08,lunch,664,30,14,14
+177,yuri_hon,Pasta Aglio Olio Recipe,2023-03-08,dinner,544,47,11,15
+178,dade_gastelum,Eggless Buttermilk Cinnamon Rolls Recipe,2023-03-08,breakfast,497,25,12,11
+179,dade_gastelum,Rajasthani Khooba Roti Recipe,2023-03-08,lunch,737,38,11,15
+180,dade_gastelum,Malwani Pumpkin And Raw Mango Curry Recipe,2023-03-08,dinner,577,32,12,11
+181,lacey_valenta,Rajgira Puri Recipe (Navratri Fasting/Vrat Recipe),2023-03-09,breakfast,802,35,10,12
+182,lacey_valenta,Tambdi Bhaji Recipe - Goan Style Red Amaranth Stir Fry,2023-03-09,lunch,494,52,16,12
+183,lacey_valenta,Spinach Corn Sabzi Recipe,2023-03-09,dinner,652,39,18,16
+184,wendell_cervantez,Moong Dal Idli & Dosa Batter Recipe,2023-03-09,breakfast,610,39,16,17
+185,wendell_cervantez,Rabodi Simla Mirch Ki Sabzi (Rajasthani Curry with Corn Papad),2023-03-09,lunch,606,34,13,16
+186,wendell_cervantez,Healthy Lauki Kofta Curry Recipe | Non Fried Bottle Gourd Kofta Curry | Dhoodi Kofta,2023-03-09,dinner,532,33,8,13
+187,tabansi_cagle,Kerala Style Tapioca with Coconut Curd Chutney Recipe,2023-03-09,breakfast,602,23,15,12
+188,tabansi_cagle,Togari Bele Tovve Recipe  - Toor Dal Rasam,2023-03-09,lunch,675,30,10,13
+189,tabansi_cagle,Tomato Corn Au Gratin Recipe,2023-03-09,dinner,628,22,16,13
+190,maureen_yeates,"Mexican Breakfast Tortilla, Fried Eggs & Black Beans With Salsa Recipe",2023-03-09,breakfast,689,39,12,15
+191,maureen_yeates,Chicken Kofta Curry Recipe,2023-03-09,lunch,416,29,12,11
+192,maureen_yeates,Roasted Zucchini Caprese Salad Rolls Recipe,2023-03-09,dinner,791,25,12,15
+193,marvelle_massa,Egg Idiyappam Recipe - Rice Vermicelli Upma with Scrambled Eggs,2023-03-09,breakfast,681,32,20,20
+194,marvelle_massa,Vellarikka Kosumalli Recipe- South Indian Style Cucumber Salad,2023-03-09,lunch,581,34,14,14
+195,marvelle_massa,Black Eyed Bean Lemon Bruschetta Recipe,2023-03-09,dinner,598,31,12,15
+196,becse_massa,Sabsige Soppina Idli Recipe (Dill Leaves Idli),2023-03-09,breakfast,469,32,12,12
+197,becse_massa,Broccoli Paratha Recipe,2023-03-09,lunch,470,30,12,16
+198,becse_massa,Zunka Recipes (Spicy Gram Flour),2023-03-09,dinner,585,40,16,11
+199,esteban_hoag,Soft Masala Dosa With Red Chutney Recipe,2023-03-09,breakfast,565,29,17,14
+200,esteban_hoag,Dill Leaves Toor Dal Recipe - Shepu/ Suva Dal recipe,2023-03-09,lunch,750,30,14,19
+201,esteban_hoag,Hyderabadi Bagara Baingan Recipe - Brinjal In Spicy Peanut Curry,2023-03-09,dinner,599,42,12,10
+202,chad_nalls,Maharashtrian Ghavan Recipe - Rice Flour Crepes,2023-03-09,breakfast,590,40,18,18
+203,chad_nalls,Lucknowi Murgh Biryani Recipe - Awadhi Style Chicken Biryani,2023-03-09,lunch,556,34,10,19
+204,chad_nalls,Tamatar Gosht Recipe-Mutton In Tomato Curry,2023-03-09,dinner,585,33,11,13
+205,yuri_hon,Croissant Recipe ,2023-03-09,breakfast,662,28,16,13
+206,yuri_hon,Kaju Butter Masala Recipe,2023-03-09,lunch,691,30,16,18
+207,yuri_hon,Himachali Mutton Rara Recipe,2023-03-09,dinner,684,48,18,16
+208,dade_gastelum,Healthy Homemade Ragi Dosa Recipe,2023-03-09,breakfast,812,34,10,12
+209,dade_gastelum,Multigrain Crepe Recipe Filled With Spicy Mashed Potatoes,2023-03-09,lunch,543,31,14,15
+210,dade_gastelum,Spinach And Capsicum Pasta Recipe,2023-03-09,dinner,565,42,14,13

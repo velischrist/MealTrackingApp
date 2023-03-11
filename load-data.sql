@@ -1,10 +1,16 @@
 -- CS 121 Winter 2023 Final Project
--- File to load the data for our dataset
--- The sources for the data are specified in the README file
--- We also generated our own data using the scripts in generate_data.ipynb
+-- File to load the data in our database
+
+-- The source for the recipe data is specified in the README file
+-- The source for the users data was a web app that automatically generates
+-- fake users (link in README)
+-- For the rest of the tables, we generated our own data using the scripts 
+-- in generate_data.ipynb
+-- CSV files from which we are loading the data are in the folder 'data'
 
 SET GLOBAL local_infile = 1; 
 
+-- Add users using the procedure from password management
 CALL sp_add_user('lacey_valenta', 'YDy+u-e~');
 CALL sp_add_user('wendell_cervantez','eVY3Y$A.y{e6');
 CALL sp_add_user('tabansi_cagle','Udu)AMuXYj');
