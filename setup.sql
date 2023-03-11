@@ -132,5 +132,4 @@ CREATE TABLE ratings (
 -- Index to make looking up meal dates faster
 -- This comes up handy when a user wants to find the meals they ate in a 
 -- given date range (e.g., past week, 3 months ago). 
-DROP INDEX idx_meal_date ON meals;
 CREATE INDEX idx_meal_date ON meals(meal_date);

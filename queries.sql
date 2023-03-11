@@ -29,13 +29,15 @@ FROM ratings JOIN recipes ON ratings.recipe_id = recipes.recipe_id
 WHERE cuisine = 'Mexican'
 GROUP BY rating 
 ORDER BY rating DESC;
+
+-- Display all users 
 SELECT username FROM users_info;
 
 -- Displays all meals consumed by the particular 
 -- user on the given date. 
 SELECT meal_type, meal_name 
 FROM meals 
-WHERE username = 'lacey_valenta' AND meal_date = '2023-03-11';
+WHERE username = 'lacey_valenta' AND meal_date = '2023-03-07';
 
 -- Displays all dates for which the particular 
 -- user logged a meal. 
@@ -55,23 +57,23 @@ DELETE FROM ratings WHERE recipe_id = 1 AND username ='lacey_valenta';
 
 -- Calls the add_goal procedure which adds a new nutritional 
 -- goal for a particular user. 
-CALL add_goal('lacey_valenta', protein, 60);
+CALL add_goal('kesia_libby', 'protein', 60);
 
 -- Adds a new meal to the meal log for a particular user. 
 INSERT INTO meals(meal_date, meal_type, username, 
     meal_name, calories, protein, fat, sugar) 
-VALUES ('2023-03-11', 'breakfast', 'lacey_valenta', 'pancakes', 
+VALUES ('2023-03-11', 'breakfast', 'kesia_libby', 'pancakes', 
     600, 8, 3, 5);
 
 -- Adds a new recipe to the recipes table. 
 INSERT INTO recipes(username, recipe_name, cuisine, course, ingredients,
     instructions, prep_time, cook_time) 
-    VALUES ('lacey_valenta', 'tacos', 'mexican', 'dinner', 'test_ingredients',
+    VALUES ('kesia_libby', 'tacos', 'mexican', 'dinner', 'test_ingredients',
     'test_instructions', 30, 60);
 
 -- Calls the add_rating procedure which allows 
 -- a particular user to add a new rating for a recipe.
-CALL add_rating('lacey_valenta', 1, 5);
+CALL add_rating('kesia_libby', 2, 5);
 
 -- Displays all recipes and their average ratings from the 
 -- recipe_ratings_view. 
@@ -80,5 +82,5 @@ SELECT recipe_name, average_rating FROM recipe_ratings_view;
 -- Calls the authenticate function which authenticates
 -- a given username and password combination and also 
 -- checks for admin privileges. 
-SELECT authenticate('lacey_valenta', 'YDy+u-e~');
+SELECT authenticate('kesia_libby', 'AtY9ePaP');
 

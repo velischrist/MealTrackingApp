@@ -10,11 +10,19 @@ DROP USER 'appclient'@'localhost';
 CREATE USER 'appclient'@'localhost' IDENTIFIED BY 'clientpw';
 
 -- Granting permissions
-GRANT ALL PRIVILEGES ON mealtracker.* TO 'appadmin'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON mealtracker.meals TO 'appclient'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON mealtracker.recipes TO 'appclient'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON mealtracker.ratings TO 'appclient'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON mealtracker.goals TO 'appclient'@'localhost';
+-- The admin has all permissions to all tables
+GRANT ALL PRIVILEGES ON mealtrackerdb.* TO 'appadmin'@'localhost';
+
+-- The user has permissions to all tables except the users_info table for 
+-- privacy issues. 
+-- These privileges would allow a user to delete a recipe created by another
+-- user (and other actions which should not be allowed), but our goal is to 
+-- handle such cases by creating procedures and calling them in the client 
+-- app interface. 
+GRANT SELECT, INSERT, UPDATE, DELETE ON mealtrackerdb.meals TO 'appclient'@'localhost';
+GRANT SELECT, INSERT, UPDATE, DELETE ON mealtrackerdb.recipes TO 'appclient'@'localhost';
+GRANT SELECT, INSERT, UPDATE, DELETE ON mealtrackerdb.ratings TO 'appclient'@'localhost';
+GRANT SELECT, INSERT, UPDATE, DELETE ON mealtrackerdb.goals TO 'appclient'@'localhost';
 
 FLUSH PRIVILEGES;
 

@@ -11,8 +11,14 @@ Dataset for recipes: https://www.kaggle.com/datasets/sarthak71/food-recipes
 The CSV files we use for loading the data are included in this repository 
 in the folder 'data'. 
 
-First, enter into a MySQL command-line interface, create a new database, and
-select it. To load the data and run the python app, execute the following 
+First, enter into a MySQL command-line interface, create a new database called
+mealtrackerdb, and select it:
+
+mysql> CREATE DATABASE mealtrackerdb;
+
+mysql> USE mealtrackerdb;
+
+To load the data and run the python app, execute the following 
 commands:
 
 mysql> source setup.sql;
@@ -24,8 +30,6 @@ mysql> source load-data.sql;
 mysql> source setup-routines.sql;
 
 mysql> source grant-permissions.sql;
-
-mysql> source queries.sql;
 
 mysql> quit;
 
