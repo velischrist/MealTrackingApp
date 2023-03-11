@@ -38,22 +38,6 @@ BEGIN
 END!
 DELIMITER ;
 
--- Computes average rating for a recipe
-DELIMITER !
-CREATE FUNCTION get_average_rating (
-     recipe_id     INT
-) RETURNS NUMERIC(3,2)
-BEGIN
-     DECLARE avg_rating;
-
-     SELECT AVG(rating) AS avg_rating
-     FROM ratings
-     WHERE ratings.recipe_id = recipe_id;
-
-     RETURN avg_rating;
-END!
-DELIMITER ;
-
 -- PROCEDURES
 -- Add a new goal of a user
 -- Either add an entirely new goal or update an existing goal to reflect the 
