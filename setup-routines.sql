@@ -13,8 +13,8 @@ CREATE VIEW recipe_ratings_view AS
 SELECT r.recipe_id AS recipe_id, r.recipe_name AS recipe_name, IFNULL(AVG(ra.rating), 0) AS average_rating
 FROM recipes AS r
 LEFT JOIN ratings AS ra ON r.recipe_id = ra.recipe_id
-GROUP BY r.recipe_id;
-
+GROUP BY r.recipe_id
+ORDER BY r.recipe_id;
 
 -- FUNCTIONS
 -- Computes the total caloric intake of a single user 
