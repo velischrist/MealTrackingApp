@@ -23,6 +23,7 @@ to share with MealTracker™ community members, and rate recipes as well.
 import sys 
 import mysql.connector
 import mysql.connector.errorcode as errorcode
+import textwrap
 
 DEBUG = False
 
@@ -203,6 +204,7 @@ def view_meal_log(username):
             view_meals_for_date(username, rows[selected-1][0])
     else:
         print('you have no meals logged! log new meals to view them here.')
+        return_to_menu_client(username)
 
     
 
@@ -332,14 +334,69 @@ def view_recipes(username):
     """
     print('*' * 60)
     print('★ ˎˊ˗✩°｡⋆ displaying recipes ⋆｡°✩˗ˏˋ ★')
-    cursor = conn.cursor()
     sql = 'SELECT recipe_name, average_rating FROM recipe_ratings_view;'
     rows = sql_conn_helper_with_return_values(sql)
-    for idx, (recipe_name, average_rating, ) in enumerate(rows[:10]):
+    rows = [(idx, recipe_name, average_rating) for idx, (recipe_name, average_rating, ) 
+            in enumerate(rows)]
+    idx_map = {idx: recipe_name for (idx, recipe_name, _) in rows}
+    print_idx = 1
+    for (idx, recipe_name, average_rating) in rows[:10 * print_idx]:
         print('*' * 60)
         print(idx+1, '--', '\033[1m' + recipe_name + '\033[0m')
         print('avg rating:', average_rating)
+    print_idx += 1
+    
+    while True:
+        print('*' * 60)
+        print('press ENTER to see more recipes, NUMBER to view the recipe, or Q to quit.')
+        select = input().lower()
+        if select == "":
+            for (idx, recipe_name, average_rating) in rows[(10 * (print_idx-1)):(10 * print_idx)]:
+                print('*' * 60)
+                print(idx+1, '--', '\033[1m' + recipe_name + '\033[0m')
+                print('avg rating:', average_rating)
+            print_idx += 1
+        elif select == "q":
+            show_client_options(username)
+            break 
+        else:
+            recipe_name = idx_map[int(select)-1]
+            sql = 'SELECT recipe_id, recipe_name, cuisine, \
+                course, prep_time, cook_time, ingredients, \
+                instructions, username \
+                FROM recipes \
+                WHERE recipe_name = \'%s\';' %(recipe_name, )
+            recipe = sql_conn_helper_with_return_values(sql)
+
+            (recipe_id, recipe_name, cuisine, 
+            course, prep_time, cook_time, ingredients, 
+            instructions, recipe_username) = recipe[0]
+            print('*' * 80)
+            print('*:༅｡.｡༅:*ﾟ:*:✼✿ \033[1m RECIPE #%s: %s \033[0m ✿✼:*ﾟ:༅｡.｡༅:*' % (recipe_id, recipe_name))
+            print('*' * 80)
+            if recipe_username:
+                print('\033[1m SUBMITTED BY: \033[0m %s' %recipe_username)
+            print('\033[1m CUISINE: \033[0m %s \033[1m, COURSE: \033[0m %s' % (cuisine, course))
+            print('\033[1m PREP TIME: \033[0m %s minutes, \033[1m COOK TIME: \033[0m %s minutes' % (prep_time, cook_time))
+            print('\033[1m INGREDIENTS: \033[0m')
+            ingredients_lst = ingredients.split('|')
+            for i in ingredients_lst:
+                print('   '+i)
+            print('-' * 80)
+            print('\033[1m INSTRUCTIONS: \033[0m')
+            instructions_lst = instructions.split('|')
+            for idx, line in enumerate(instructions_lst):
+                print('\033[1m STEP %s \033[0m:' %(idx+1))
+                wrapper = textwrap.TextWrapper(width=60)
+                word_list = wrapper.wrap(text=line)
+                for element in word_list:
+                    print(element)
+                print('\n')
+            
     return_to_menu_client(username)
+    
+
+
 
 # ----------------------------------------------------------------------
 # Command-Line Functionality
@@ -379,7 +436,7 @@ def show_client_options(username):
         add_rating(username)
     else:
         print('your input is not valid. try again!')
-        show_client_options()
+        show_client_options(username)
         
 
 
@@ -457,7 +514,7 @@ def main():
     """
     Main function for starting things up.
     """
-
+    
     username = input('username: ')
     password = input('password: ')
     is_authenticated, is_admin = log_in(username, password)

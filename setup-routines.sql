@@ -46,7 +46,7 @@ CREATE FUNCTION get_average_rating (
 BEGIN
      DECLARE avg_rating;
 
-     SELECT AVG(rating) INTO avg_rating
+     SELECT AVG(rating) AS avg_rating
      FROM ratings
      WHERE ratings.recipe_id = recipe_id;
 
