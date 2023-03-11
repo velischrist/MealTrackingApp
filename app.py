@@ -72,6 +72,7 @@ def sql_conn_helper_with_success_msg(query, success_msg,
     cursor = conn.cursor()    
     try:
         cursor.execute(query)
+        conn.commit()
         print(success_msg)
         if username:
             success_function(username)
@@ -113,7 +114,7 @@ def return_to_menu_admin():
     admin menu or quitting. 
     """
     print('*' * 65)
-    ans = input('press ENTER to return to the menu or anything else to quit').lower()
+    ans = input('press ENTER to return to the menu or anything else to quit ').lower()
     if ans == '':
         show_admin_options()
     else:
@@ -125,7 +126,7 @@ def return_to_menu_client(username):
     client menu or quitting. 
     """
     print('*' * 65)
-    ans = input('press ENTER to return to the menu or anything else to quit').lower()
+    ans = input('press ENTER to return to the menu or anything else to quit ').lower()
     if ans == '':
         show_client_options(username)
     else:
@@ -173,7 +174,12 @@ def view_meals_for_date(username, meal_date):
         cursor.execute(sql2)
         (total_calories, ) = cursor.fetchone()
         print('your total caloric intake for %s was\033[1m %s \033[0m' % (meal_date, total_calories) )
-        return_to_menu_client(username)
+        print('*' * 65)
+        key = input('press ENTER to return to the main menu or B to go back ').lower()
+        if key == 'b':
+            view_meal_log(username)
+        else:
+            show_client_options(username)
     except mysql.connector.Error as err:
         if DEBUG:
             sys.stderr(err)
@@ -194,16 +200,16 @@ def view_meal_log(username):
     sql = 'SELECT meal_date FROM meals WHERE username=\'%s\';' % (username, )
     rows = sql_conn_helper_with_return_values(sql)
 
-    meal_dates = set([meal_date for (meal_date, ) in rows])
+    meal_dates = list(set([meal_date for (meal_date, ) in rows]))
     print('you have %s dates logged in your meal log: ' % len(meal_dates))
     for (idx, meal_date) in enumerate(meal_dates):
-        print(idx+1, '-------', meal_date.strftime('%Y-%m-%d'))
+        print(idx+1, '----', meal_date.strftime('%Y-%m-%d'), '(%s)' %meal_date.strftime('%A'))
     if len(meal_dates) > 0:
         selected = int(input('enter a number to select a date: '))
         if (selected-1) in range(len(rows)):
-            view_meals_for_date(username, rows[selected-1][0])
+            view_meals_for_date(username, meal_dates[selected-1])
     else:
-        print('you have no meals logged! log new meals to view them here.')
+        print('you have no meals logged! log new meals ts view them here.')
         return_to_menu_client(username)
 
     
@@ -251,7 +257,7 @@ def add_goal(username):
     if goal_type not in type_dict:
         print('goal type selection not valid. try again!')
         add_goal(username)
-    target = input('enter the daily target for your goal:').lower()
+    target = input('enter the daily target for your goal: ').lower()
     print('*' * 50)
     sql = 'CALL add_goal(\'%s\', \'%s\', %s);' % (username, type_dict[goal_type], target, )
     sql_conn_helper_with_success_msg(sql, 'goal successfuly added', 
@@ -278,11 +284,11 @@ def add_meal(username):
         meal_type = type_dict[meal_type_input]
     
     meal_date = input('date (YYYY-mm-dd): ')
-    meal_name = input('meal name:')
-    calories = input('calories (kcal):')
-    protein = input('protein (g):')
-    fat = input('fat (g):')
-    sugar = input('sugar (g):')
+    meal_name = input('meal name: ')
+    calories = input('calories (kcal): ')
+    protein = input('protein (g): ')
+    fat = input('fat (g): ')
+    sugar = input('sugar (g): ')
     print('*' * 50)
 
     sql = 'INSERT INTO meals(meal_date, meal_type, username, meal_name, calories, protein, fat, sugar) VALUES (\'%s\', \'%s\', \'%s\', \'%s\', %s, %s, %s, %s);' % (meal_date, meal_type, username, meal_name, calories, protein, fat, sugar)
@@ -296,13 +302,13 @@ def add_recipe(username):
     recipe name, cuisine, course, prep time, cook time, ingredients, 
     and instructions for the recipe.
     """
-    recipe_name = input('recipe name:')
-    cuisine = input('cuisine:')
-    course = input('course:')
-    prep_time = input('prep time in minutes:')
-    cook_time = input('cook time in minutes:')
-    ingredients = input('ingredients:')
-    instructions = input('instructions:')
+    recipe_name = input('recipe name: ')
+    cuisine = input('cuisine: ')
+    course = input('course: ')
+    prep_time = input('prep time in minutes: ')
+    cook_time = input('cook time in minutes: ')
+    ingredients = input('ingredients: ')
+    instructions = input('instructions: ')
     print('*' * 50)
     sql = 'INSERT INTO recipes(username, recipe_name, cuisine, course, ingredients, \
         instructions, prep_time, cook_time) \
@@ -318,8 +324,8 @@ def add_rating(username):
     the recipe_id. Ratings must be an integer value ranging from 
     1-5. 
     """
-    recipe_id = input('recipe id:')
-    rating = int(input('rating (1-5):'))
+    recipe_id = input('recipe id: ')
+    rating = int(input('rating (1-5): '))
     if not (1 <= rating <= 5):
         print('rating not valid. try again!')
         add_rating(username)
@@ -348,22 +354,39 @@ def view_user_rating(username):
     for (idx, recipe_name, rating) in rows[:10 * print_idx]:
         print('*' * 60)
         print(idx+1, '--', '\033[1m' + recipe_name + '\033[0m')
-        print('your rating:', rating,'/ 5')
+        print('your rating: ', rating,'/ 5')
     print_idx += 1
 
     while True:
         print('*' * 60)
-        print('press ENTER to see more or anywhere else to quit.')
+        print('press ENTER to see more or anywhere else to go back.')
         select = input().lower()
         if select == "":
             for (idx, recipe_name, rating) in rows[(10 * (print_idx-1)):(10 * print_idx)]:
                 print('*' * 60)
                 print(idx+1, '--', '\033[1m' + recipe_name + '\033[0m')
-                print('your rating:', rating,'/ 5')
+                print('your rating: ', rating,'/ 5')
             print_idx += 1
         else:
             show_client_options(username)
             break 
+
+def view_goal(username):
+    """
+    Displays goals for a given user. Goals are defined as daily 
+    intake goals for calories, protein, fat, or sugar. 
+    """
+    print('*' * 60)
+    print('\033[1m ★ ˎˊ˗✩°｡⋆ displaying daily intake goals for %s ⋆｡°✩˗ˏˋ ★ \033[0m' %username)
+    sql = 'SELECT goal_type, target FROM goals WHERE username = \'%s\';' %(username, )
+    rows = sql_conn_helper_with_return_values(sql)
+    unit_dict = {0: 'g', 1: 'kcal'}
+    for (goal_type, target, ) in rows:
+        unit = unit_dict[goal_type == 'calories']
+        print('\033[1m %s\033[0m' %goal_type, ':', target,unit)
+    print('\nyou can do it! ♡〜٩( ˃▿˂ )۶〜♡ ')
+
+    return_to_menu_client(username)
 
 def view_recipes(username): 
     """
@@ -380,18 +403,18 @@ def view_recipes(username):
     for (idx, recipe_name, average_rating) in rows[:5 * print_idx]:
         print('*' * 60)
         print(idx+1, '--', '\033[1m' + recipe_name + '\033[0m')
-        print('avg rating:', average_rating)
+        print('avg rating: ', average_rating)
     print_idx += 1
     
     while True:
         print('*' * 60)
-        print('press ENTER to see more recipes, NUMBER to view the recipe, or Q to quit.')
+        print('press ENTER to see more recipes, NUMBER to view the recipe, or B to go back.')
         select = input().lower()
         if select == "":
             for (idx, recipe_name, average_rating) in rows[(5 * (print_idx-1)):(5 * print_idx)]:
                 print('*' * 60)
                 print(idx+1, '--', '\033[1m' + recipe_name + '\033[0m')
-                print('avg rating:', average_rating)
+                print('avg rating: ', average_rating)
             print_idx += 1
         elif select == "q":
             show_client_options(username)
@@ -423,7 +446,7 @@ def view_recipes(username):
             print('\033[1m INSTRUCTIONS: \033[0m')
             instructions_lst = instructions.split('|')
             for idx, line in enumerate(instructions_lst):
-                print('\033[1m STEP %s \033[0m:' %(idx+1))
+                print('\033[1m STEP %s \033[0m: ' %(idx+1))
                 wrapper = textwrap.TextWrapper(width=60)
                 word_list = wrapper.wrap(text=line)
                 for element in word_list:
@@ -432,6 +455,7 @@ def view_recipes(username):
             
     return_to_menu_client(username)
     
+
 
 
 
@@ -445,16 +469,17 @@ def show_client_options(username):
     a recipe, or rating a recipe.
     """
     [first, last] = username.split('_')
-    print('welcome to the MealTracker™ ( ˘▽˘)っ♨')
+    print('\033[1m welcome to the MealTracker™ ( ˘▽˘)っ♨ \033[0m')
     print('⁺˚⋆｡°✩₊⋆｡ °✩⋆｡ °✩⁺˚⋆｡°✩₊⋆｡ °✩⋆｡ °✩⁺˚⋆｡°✩₊⋆｡ °✩⋆｡ °✩')
     print('hi babe, you are logged in as ~ %s %s ~!' % (first, last))
     print('  (a) - add a new goal')
-    print('  (b) - view my meal log')
-    print('  (c) - add a new meal')
-    print('  (d) - view recipes')
-    print('  (e) - add a recipe')
-    print('  (f) - rate a recipe')
-    print('  (g) - view my rated recipes')
+    print('  (b) - view my goals')
+    print('  (c) - view my meal log')
+    print('  (d) - add a new meal')
+    print('  (e) - view recipes')
+    print('  (f) - add a recipe')
+    print('  (g) - rate a recipe')
+    print('  (h) - view my rated recipes')
     print('  (q) - quit')
     ans = input('enter an option: ').lower()
     print(ans)
@@ -462,17 +487,19 @@ def show_client_options(username):
         quit_ui()
     elif ans == 'a':
         add_goal(username)
-    elif ans =='b':
-        view_meal_log(username)
+    elif ans == 'b':
+        view_goal(username)
     elif ans =='c':
+        view_meal_log(username)
+    elif ans =='d':
         add_meal(username)
     elif ans =='d':
         view_recipes(username)
-    elif ans == 'e':
+    elif ans == 'f':
         add_recipe(username)
     elif ans == 'g':
         view_user_rating(username)
-    elif ans == 'f':
+    elif ans == 'h':
         add_rating(username)
     else:
         print('your input is not valid. try again!')
@@ -486,7 +513,7 @@ def show_admin_options():
     viewing all users, removing a user, removing a recipe, 
     or removing a rating. 
     """
-    print('welcome to the MealTracker™ ( ˘▽˘)っ♨')
+    print('\033[1m welcome to the MealTracker™ ( ˘▽˘)っ♨ \033[0m ')
     print('⁺˚⋆｡°✩₊⋆｡ °✩⋆｡ °✩⁺˚⋆｡°✩₊⋆｡ °✩⋆｡ °✩⁺˚⋆｡°✩₊⋆｡ °✩⋆｡ °✩')
     print('hi babe, you are logged in as ~ admin ~!')
     print('  (a) - view all users')
@@ -570,5 +597,5 @@ def main():
 
 if __name__ == '__main__':
     conn = get_conn()
-    view_recipes('lacey_valenta')
+    show_client_options('lacey_valenta')
     # main()
