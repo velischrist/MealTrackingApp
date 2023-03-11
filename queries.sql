@@ -1,11 +1,12 @@
 -- CS 121 Winter 2023 Final Project
 -- SQL queries for the meal tracking app database
 
--- Compute the total caloric intake of a user with the username 'lacey_valenta'
--- on date 03/07/23
-SELECT SUM(calories)
-FROM meals NATURAL JOIN meal_log 
-WHERE username = 'lacey_valenta' AND meal_date = '2023-03-07';
+-- View all the dates for which the user did not meet their daily calories goal
+SELECT meal_date
+FROM meals JOIN goals ON meals.username = goals.username
+WHERE meals.username = 'lacey_valenta' -- replace with the desired username
+AND SUM(calories) > goals.target
+GROUP BY meal_date;
 
 -- Display the number of each rating that recipes for Mexican cuisine received
 -- ordered by the rating
@@ -14,6 +15,11 @@ FROM ratings JOIN recipes ON ratings.recipe_id = recipes.recipe_id
 WHERE cuisine = 'Mexican'
 GROUP BY rating 
 ORDER BY rating;
+
+-- Display the average rating for each cuisine 
+SELECT cuisine, AVG(rating)
+FROM recipes JOIN ratins ON ratings.recipe_id = recipes.recipe_id
+GROUP BY cuisine;
 
 -- Select a list of recipe names and their rating as rated by the user with
 -- username 'lacey_valenta'
