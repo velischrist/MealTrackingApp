@@ -328,6 +328,43 @@ def add_rating(username):
     sql_conn_helper_with_success_msg(sql, 'recipe was successfully rated!', 
                     return_to_menu_client, add_rating, username)
 
+
+def view_user_rating(username):
+    """
+    Displays all recipes rated by a given user,
+    with the respective rating for each recipe. 
+    """
+
+    print('*' * 60)
+    print('\033[1m' + '★ ˎˊ˗✩°｡⋆ displaying all recipes you\'ve rated ⋆｡°✩˗ˏˋ ★' + '\033[0m')
+    print('*' * 60)
+    sql = 'SELECT recipe_name, rating \
+    FROM recipes JOIN ratings ON ratings.recipe_id = recipes.recipe_id \
+    WHERE ratings.username = \'%s\';' %(username, )
+    rows = sql_conn_helper_with_return_values(sql)
+    rows = [(idx, recipe_name, rating) for idx, (recipe_name, rating, ) 
+            in enumerate(rows)]
+    print_idx = 1
+    for (idx, recipe_name, rating) in rows[:10 * print_idx]:
+        print('*' * 60)
+        print(idx+1, '--', '\033[1m' + recipe_name + '\033[0m')
+        print('your rating:', rating,'/ 5')
+    print_idx += 1
+
+    while True:
+        print('*' * 60)
+        print('press ENTER to see more or anywhere else to quit.')
+        select = input().lower()
+        if select == "":
+            for (idx, recipe_name, rating) in rows[(10 * (print_idx-1)):(10 * print_idx)]:
+                print('*' * 60)
+                print(idx+1, '--', '\033[1m' + recipe_name + '\033[0m')
+                print('your rating:', rating,'/ 5')
+            print_idx += 1
+        else:
+            show_client_options(username)
+            break 
+
 def view_recipes(username): 
     """
     Displays recipes with their respective average ratings.
@@ -340,7 +377,7 @@ def view_recipes(username):
             in enumerate(rows)]
     idx_map = {idx: recipe_name for (idx, recipe_name, _) in rows}
     print_idx = 1
-    for (idx, recipe_name, average_rating) in rows[:10 * print_idx]:
+    for (idx, recipe_name, average_rating) in rows[:5 * print_idx]:
         print('*' * 60)
         print(idx+1, '--', '\033[1m' + recipe_name + '\033[0m')
         print('avg rating:', average_rating)
@@ -351,7 +388,7 @@ def view_recipes(username):
         print('press ENTER to see more recipes, NUMBER to view the recipe, or Q to quit.')
         select = input().lower()
         if select == "":
-            for (idx, recipe_name, average_rating) in rows[(10 * (print_idx-1)):(10 * print_idx)]:
+            for (idx, recipe_name, average_rating) in rows[(5 * (print_idx-1)):(5 * print_idx)]:
                 print('*' * 60)
                 print(idx+1, '--', '\033[1m' + recipe_name + '\033[0m')
                 print('avg rating:', average_rating)
@@ -417,6 +454,7 @@ def show_client_options(username):
     print('  (d) - view recipes')
     print('  (e) - add a recipe')
     print('  (f) - rate a recipe')
+    print('  (g) - view my rated recipes')
     print('  (q) - quit')
     ans = input('enter an option: ').lower()
     print(ans)
@@ -432,6 +470,8 @@ def show_client_options(username):
         view_recipes(username)
     elif ans == 'e':
         add_recipe(username)
+    elif ans == 'g':
+        view_user_rating(username)
     elif ans == 'f':
         add_rating(username)
     else:
@@ -514,7 +554,6 @@ def main():
     """
     Main function for starting things up.
     """
-    
     username = input('username: ')
     password = input('password: ')
     is_authenticated, is_admin = log_in(username, password)
@@ -531,4 +570,5 @@ def main():
 
 if __name__ == '__main__':
     conn = get_conn()
-    main()
+    view_recipes('lacey_valenta')
+    # main()
