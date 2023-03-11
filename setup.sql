@@ -129,7 +129,8 @@ CREATE TABLE ratings (
 );
 
 -- INDEXES:
--- Index to make looking up user ratings faster
--- This comes up handy when computing the average rating of each recipe. We 
--- have a view that shows the recipes with their average rating
-CREATE INDEX idx_rating ON ratings(rating);
+-- Index to make looking up meal dates faster
+-- This comes up handy when a user wants to find the meals they ate in a 
+-- given date range (e.g., past week, 3 months ago). 
+DROP INDEX idx_meal_date ON meals;
+CREATE INDEX idx_meal_date ON meals(meal_date);
