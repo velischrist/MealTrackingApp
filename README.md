@@ -1,16 +1,18 @@
 # MealTrackingApp
-An app for tracking daily meals, setting goals, and finding/rating recipes
+An app for tracking daily meals, setting goals, and finding/rating recipes.
+
 The app includes:
 - SQL database of users, goals, meals, recipes, and ratings
 - Python interface for the app
 
 Dataset for recipes: https://www.kaggle.com/datasets/sarthak71/food-recipes
 
-The CSV files we use for loading the data are included in this repository in the folder 'data'. 
+The CSV files we use for loading the data are included in this repository 
+in the folder 'data'. 
 
 First, enter into a MySQL command-line interface, create a new database, and
-execute USE [database_name];
-To load the data and run the python app, execute the following commands:
+select it. To load the data and run the python app, execute the following 
+commands:
 
 mysql> source setup.sql;
 
