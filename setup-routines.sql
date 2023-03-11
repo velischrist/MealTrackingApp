@@ -1,9 +1,9 @@
 -- CS 121 Winter 2023 Final Project
 
 -- Routines for Meal Tracking app
--- Includes: functions total_caloric_intake, get_average_ratings, 
---           procedure update_avg_rating and
---           trigger ____
+-- Includes: functions: total_caloric_intake, get_average_ratings, 
+--           procedure: update_avg_rating and
+--           trigger:  ____
 
 -- VIEWS
 -- Create a materialized view of recipes with their average rating

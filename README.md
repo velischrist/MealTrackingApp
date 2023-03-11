@@ -1,5 +1,6 @@
 # MealTrackingApp
-An app for tracking daily meals, setting goals, and finding/rating recipes.
+
+We created a meal-tracking app where users can track daily meals with nutritional information, including calories, protein, carbs, sugar. The app allows users to set nutritional goals, while tracking progress towards these goals through use of the meal log. A food diary allows individuals greater awareness of their food choices and portion sizes while improving their nutritional intake. To further motivate and inspire healthy and intuitive eating, the application allows users to create recipes, discover and rate recipes by others. 
 
 The app includes:
 - SQL database of users, goals, meals, recipes, and ratings

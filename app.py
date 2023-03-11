@@ -38,9 +38,9 @@ def get_conn():
     try:
         conn = mysql.connector.connect(
           host='localhost',
-          user='appadmin',
+          user= 'appadmin',
           port='8889', 
-          password='adminpw',
+          password= 'adminpw',
           database='mealtracker'
         )
         print('successfully connected')
@@ -457,6 +457,7 @@ def main():
     """
     Main function for starting things up.
     """
+
     username = input('username: ')
     password = input('password: ')
     is_authenticated, is_admin = log_in(username, password)
@@ -468,6 +469,7 @@ def main():
             show_admin_options()
         else:
             show_client_options(username)
+
 
 
 if __name__ == '__main__':
