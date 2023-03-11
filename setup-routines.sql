@@ -6,7 +6,15 @@
 --           trigger ____
 
 -- VIEWS
--- Create a view of recipes with their average rating
+-- Create a materialized view of recipes with their average rating
+DROP VIEW IF EXISTS recipe_ratings_view;
+
+CREATE VIEW recipe_ratings_view AS
+SELECT r.recipe_id AS recipe_id, r.recipe_name AS recipe_name, IFNULL(AVG(ra.rating), 0) AS average_rating
+FROM recipes AS r
+LEFT JOIN ratings AS ra ON r.recipe_id = ra.recipe_id
+GROUP BY r.recipe_id;
+
 
 -- FUNCTIONS
 -- Computes the total caloric intake of a single user 
@@ -103,3 +111,4 @@ DELIMITER ;
 -- TRIGGERS
 -- Update the average rating of a recipe in the view when a there's a new rating
 -- Uses the compute average rating function above
+
