@@ -76,6 +76,7 @@ def get_conn():
 # Functions for Command-Line Options/Query Execution
 # ----------------------------------------------------------------------
 def return_to_menu_admin():
+    print('*' * 50)
     ans = input('press ENTER to return to the menu or anything else to quit').lower()
     if ans == '':
         show_admin_options()
@@ -83,12 +84,12 @@ def return_to_menu_admin():
         quit_ui()
 
 def return_to_menu_client(username):
+    print('*' * 50)
     ans = input('press ENTER to return to the menu or anything else to quit').lower()
     if ans == '':
         show_client_options(username)
     else:
         quit_ui()
-
 
 def view_users():
     print('viewing all users')
@@ -109,7 +110,50 @@ def view_users():
             sys.exit(1)
         else:
             sys.stderr('An error occurred, give something useful for clients...')
+
+def view_meals_for_date(username, meal_date):
+    cursor = conn.cursor()
+    sql = 'SELECT meal_type, meal_name FROM meals WHERE username=\'%s\' AND meal_date = \'%s\';' % (username, meal_date, )
+    try:
+        cursor.execute(sql)
+        rows = cursor.fetchall()
+        for (meal_type, meal_name, ) in rows:
+            print(meal_type, ':', meal_name.replace('Recipe ',''))
+        return_to_menu_client(username)
+    except mysql.connector.Error as err:
+        if DEBUG:
+            sys.stderr(err)
+            sys.exit(1)
+        else:
+            sys.stderr('An error occurred, give something useful for clients...')
+
+
+def view_meal_log(username):
+    print('*' * 50)
+    cursor = conn.cursor()
+    sql = 'SELECT meal_date FROM meals WHERE username=\'%s\';' % (username, )
+    try:
+        cursor.execute(sql)
+        rows = cursor.fetchall()
+        print('you have %s dates logged in your meal log: ' % len(rows))
+        meal_dates = set([meal_date for (meal_date, ) in rows])
+        print()
+        for (idx, meal_date) in enumerate(meal_dates):
+            print(idx+1, '-------', meal_date.strftime('%Y-%m-%d'))
+        print('*' * 50)
+        selected = int(input('enter a number to select a date: '))
+        if (selected-1) in range(len(rows)):
+            view_meals_for_date(username, rows[selected-1][0])
+
+        return_to_menu_admin()
+    except mysql.connector.Error as err:
+        if DEBUG:
+            sys.stderr(err)
+            sys.exit(1)
+        else:
+            sys.stderr('An error occurred, give something useful for clients...')
     
+
 def remove_user():
     remove_id = input('enter the username to remove: ').lower()
     print('*' * 50)
@@ -177,17 +221,18 @@ def remove_rating():
 def add_goal(username):
     type_dict = {'1': 'calories', '2': 'protein', '3': 'fat', '4': 'sugar'}
     print('goal types: 1) calories, 2) protein, 3) fat, 4) sugar')
-    goal_type = input('make a selection: ').lower()
-    print(goal_type)
+    goal_type= input('make a selection: ').lower()
     if goal_type not in type_dict:
         print('goal type selection not valid. try again!')
         add_goal(username)
     target = input('enter the daily target for your goal:').lower()
     print('*' * 50)
     cursor = conn.cursor()
-    sql = 'INSERT INTO goals(username, goal_type, target) VALUES (\'%s\', \'%s\',\'%s\');' % (username, type_dict[goal_type], target)
+    sql = 'CALL add_goal(\'%s\', \'%s\', %s);' % (username, type_dict[goal_type], target, )
+    print(sql)
     try:
         cursor.execute(sql)
+        print('goal successfully added!')
         return_to_menu_client(username)
 
     except mysql.connector.Error as err:
@@ -205,9 +250,9 @@ def add_meal(username):
         print('goal type selection not valid. try again!')
         add_meal(username)
     else:
-        meal_type = type_dict[meal_type]
+        meal_type = type_dict[meal_type_input]
     
-    meal_date = input('date (YYYY-mm-dd)')
+    meal_date = input('date (YYYY-mm-dd): ')
     meal_name = input('meal name:')
     calories = input('calories (kcal):')
     protein = input('protein (g):')
@@ -218,7 +263,7 @@ def add_meal(username):
     sql = 'INSERT INTO meals(meal_date, meal_type, username, meal_name, calories, protein, fat, sugar) VALUES (\'%s\', \'%s\', \'%s\', \'%s\', %s, %s, %s, %s);' % (meal_date, meal_type, username, meal_name, calories, protein, fat, sugar)
     try:
         cursor.execute(sql)
-        print('recipe succesfully added!')
+        print('meal succesfully logged!')
         return_to_menu_client(username)
 
     except mysql.connector.Error as err:
@@ -240,9 +285,9 @@ def add_recipe(username):
     print('*' * 50)
     cursor = conn.cursor()
     sql = 'INSERT INTO recipes(username, recipe_name, cuisine, course, ingredients, \
-        instructions, prep_time, cook_time, ) \
+        instructions, prep_time, cook_time) \
         VALUES (\'%s\', \'%s\', \'%s\', \'%s\',\'%s\', \'%s\',%s, %s);' \
-        % (username, recipe_name, cuisine, course, ingredients, instructions, prep_time, cook_time)
+        % (username, recipe_name, cuisine, course, ingredients, instructions, prep_time, cook_time, )
     
     try:
         cursor.execute(sql)
@@ -258,23 +303,20 @@ def add_recipe(username):
             add_recipe()
 
 def add_rating(username):
-    recipe_id = input('recipe name:')
-    cuisine = input('cuisine:')
-    course = input('course:')
-    prep_time = input('prep time in minutes:')
-    cook_time = input('cook time in minutes:')
-    ingredients = input('ingredients:')
-    instructions = input('instructions:')
+    recipe_id = input('recipe id:')
+    rating = int(input('rating (1-5):'))
+    if not (1 <= rating <= 5):
+        print('rating not valid. try again!')
+        add_rating(username)
     print('*' * 50)
     cursor = conn.cursor()
-    sql = 'INSERT INTO recipes(username, recipe_name, cuisine, course, ingredients, \
-        instructions, prep_time, cook_time, ) \
-        VALUES (\'%s\', \'%s\', \'%s\', \'%s\',\'%s\', \'%s\',%s, %s);' \
-        % (username, recipe_name, cuisine, course, ingredients, instructions, prep_time, cook_time)
+    sql = 'INSERT INTO ratings(username, recipe_id, rating) VALUES (\'%s\', %s, %s);' \
+        % (username, recipe_id, rating)
+    print(sql)
     
     try:
         cursor.execute(sql)
-        print('recipe succesfully added!')
+        print('recipe succesfully rated!')
         return_to_menu_client(username)
 
     except mysql.connector.Error as err:
@@ -294,14 +336,14 @@ def show_client_options(username):
     Displays options specific for admins, such as adding new data <x>,
     modifying <x> based on a given id, removing <x>, etc.
     """
-
+    [first, last] = username.split('_')
     print('welcome to the MealTracker™ ( ˘▽˘)っ♨')
     print('⁺˚⋆｡°✩₊⋆｡ °✩⋆｡ °✩⁺˚⋆｡°✩₊⋆｡ °✩⋆｡ °✩⁺˚⋆｡°✩₊⋆｡ °✩⋆｡ °✩')
-    print('hi babe, you are logged in as ~ client ~!')
+    print('hi babe, you are logged in as ~ %s %s ~!' % (first, last))
     print('  (a) - add a new goal')
     print('  (b) - view my meal log')
     print('  (c) - add a new meal')
-    # print('  (d) - view recipes')
+    print('  (d) - view recipes')
     print('  (e) - add a recipe')
     print('  (f) - rate a recipe')
     print('  (q) - quit')
