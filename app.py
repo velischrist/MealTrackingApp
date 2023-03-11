@@ -42,7 +42,7 @@ def get_conn():
           user= 'appadmin',
           port='8889', 
           password= 'adminpw',
-          database='mealtracker'
+          database='mealtrackerdb'
         )
         print('successfully connected')
         print('⁺˚⋆｡°✩₊⋆｡ °✩⋆｡ °✩⁺˚⋆｡°✩₊⋆｡ °✩⋆｡ °✩⁺˚⋆｡°✩₊⋆｡ °✩⋆｡ °✩')
