@@ -1,1 +1,0 @@
-sql_conn_helper_with_return_values(sql)

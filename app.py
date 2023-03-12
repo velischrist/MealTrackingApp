@@ -23,6 +23,7 @@ to share with MealTracker™ community members, and rate recipes as well.
 import sys 
 import mysql.connector
 import mysql.connector.errorcode as errorcode
+from datetime import date
 import textwrap
 
 DEBUG = False
@@ -31,7 +32,7 @@ DEBUG = False
 # ----------------------------------------------------------------------
 # SQL Utility Functions
 # ----------------------------------------------------------------------
-def get_conn():
+def get_conn(conn_user, conn_password):
     """"
     Returns a connected MySQL connector instance, if connection is successful.
     If unsuccessful, exits.
@@ -39,23 +40,23 @@ def get_conn():
     try:
         conn = mysql.connector.connect(
           host='localhost',
-          user= 'appadmin',
+          user= conn_user,
           port='8889', 
-          password= 'adminpw',
+          password= conn_password,
           database='mealtrackerdb'
         )
         print('successfully connected')
         print('⁺˚⋆｡°✩₊⋆｡ °✩⋆｡ °✩⁺˚⋆｡°✩₊⋆｡ °✩⋆｡ °✩⁺˚⋆｡°✩₊⋆｡ °✩⋆｡ °✩')
         return conn
-    except mysql.connector.Error as err:
+    except Exception as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR and DEBUG:
-            sys.stderr('Incorrect username or password when connecting to DB.')
+            print('Incorrect username or password when connecting to DB.')
         elif err.errno == errorcode.ER_BAD_DB_ERROR and DEBUG:
-            sys.stderr('Database does not exist.')
+            print('Database does not exist.')
         elif DEBUG:
-            sys.stderr(err)
+            print(err)
         else:
-            sys.stderr('An error occurred, please contact the administrator.')
+            print('An error occurred, please contact the administrator.')
         sys.exit(1)
 
 # ----------------------------------------------------------------------
@@ -79,12 +80,12 @@ def sql_conn_helper_with_success_msg(query, success_msg,
         else:
             success_function()
 
-    except mysql.connector.Error as err:
+    except Exception as err:
         if DEBUG:
-            sys.stderr(err)
+            print(err)
             sys.exit(1)
         else:
-            sys.stderr('An error occurred.')
+            print('An error occurred.')
             if username:
                 error_function(username)
             else:
@@ -101,12 +102,12 @@ def sql_conn_helper_with_return_values(query):
         cursor.execute(query)
         return cursor.fetchall()
 
-    except mysql.connector.Error as err:
+    except Exception as err:
         if DEBUG:
-            sys.stderr(err)
+            print(err)
             sys.exit(1)
         else:
-            sys.stderr('An error occurred.')
+            print('An error occurred.')
 
 def return_to_menu_admin():
     """
@@ -132,6 +133,8 @@ def return_to_menu_client(username):
     else:
         quit_ui()
 
+
+
 def view_users():
     """
     Displays a list of all users of MealTracker™ with a 
@@ -143,8 +146,8 @@ def view_users():
 
     sql = 'SELECT username FROM users_info;'
     rows = sql_conn_helper_with_return_values(sql)
-    for idx, username in enumerate(rows):
-        print(idx+1, username[0])
+    for username in rows:
+        print(username[0])
     print('*' * 50)
     print('there are total', len(rows), 'users in the app.')
     return_to_menu_admin()
@@ -180,12 +183,12 @@ def view_meals_for_date(username, meal_date):
             view_meal_log(username)
         else:
             show_client_options(username)
-    except mysql.connector.Error as err:
+    except Exception as err:
         if DEBUG:
-            sys.stderr(err)
+            print(err)
             sys.exit(1)
         else:
-            sys.stderr('the inputs were invalid! please try again.')
+            print('the inputs were invalid! please try again.')
             view_meals_for_date(username, meal_date)
 
 
@@ -197,7 +200,12 @@ def view_meal_log(username):
     """
     print('*' * 50)
     
-    sql = 'SELECT meal_date FROM meals WHERE username=\'%s\';' % (username, )
+    sql = 'SELECT meal_date \
+    FROM meals \
+    WHERE username=\'%s\' \
+    ORDER BY meal_date DESC\
+    ;' % (username, )
+    
     rows = sql_conn_helper_with_return_values(sql)
 
     meal_dates = list(set([meal_date for (meal_date, ) in rows]))
@@ -209,7 +217,7 @@ def view_meal_log(username):
         if (selected-1) in range(len(rows)):
             view_meals_for_date(username, meal_dates[selected-1])
     else:
-        print('you have no meals logged! log new meals ts view them here.')
+        print('you have no meals logged! log new meals to view them here.')
         return_to_menu_client(username)
 
     
@@ -264,8 +272,6 @@ def add_goal(username):
                     return_to_menu_client, add_goal, username)
     
 
-
-
 def add_meal(username):
     """
     Allows the user to add log a new meal to their meal log. Users must 
@@ -283,7 +289,9 @@ def add_meal(username):
     else:
         meal_type = type_dict[meal_type_input]
     
-    meal_date = input('date (YYYY-mm-dd): ')
+    meal_date = input('press ENTER for today or date (YYYY-mm-dd): ')
+    if meal_date == "":
+        meal_date = date.today()
     meal_name = input('meal name: ')
     calories = input('calories (kcal): ')
     protein = input('protein (g): ')
@@ -325,8 +333,8 @@ def add_rating(username):
     1-5. 
     """
     recipe_id = input('recipe id: ')
-    rating = int(input('rating (1-5): '))
-    if not (1 <= rating <= 5):
+    rating = input('rating (1-5): ')
+    if not rating.isdigit() or not (1 <= int(rating) <= 5):
         print('rating not valid. try again!')
         add_rating(username)
     print('*' * 50)
@@ -354,7 +362,8 @@ def view_user_rating(username):
     for (idx, recipe_name, rating) in rows[:10 * print_idx]:
         print('*' * 60)
         print(idx+1, '--', '\033[1m' + recipe_name + '\033[0m')
-        print('your rating: ', rating,'/ 5')
+        print('your rating: ', rating, '/5', sep='')
+
     print_idx += 1
 
     while True:
@@ -365,7 +374,7 @@ def view_user_rating(username):
             for (idx, recipe_name, rating) in rows[(10 * (print_idx-1)):(10 * print_idx)]:
                 print('*' * 60)
                 print(idx+1, '--', '\033[1m' + recipe_name + '\033[0m')
-                print('your rating: ', rating,'/ 5')
+                print('your rating: ', rating, '/5', sep='')
             print_idx += 1
         else:
             show_client_options(username)
@@ -403,7 +412,7 @@ def view_recipes(username):
     for (idx, recipe_name, average_rating) in rows[:5 * print_idx]:
         print('*' * 60)
         print(idx+1, '--', '\033[1m' + recipe_name + '\033[0m')
-        print('avg rating: ', average_rating)
+        print('avg rating: ', '{:.3}'.format(average_rating), '/5', sep='')
     print_idx += 1
     
     while True:
@@ -414,9 +423,9 @@ def view_recipes(username):
             for (idx, recipe_name, average_rating) in rows[(5 * (print_idx-1)):(5 * print_idx)]:
                 print('*' * 60)
                 print(idx+1, '--', '\033[1m' + recipe_name + '\033[0m')
-                print('avg rating: ', average_rating)
+                print('avg rating: ', '{:.3}'.format(average_rating), '/5', sep='')
             print_idx += 1
-        elif select == "q":
+        elif select == "b":
             show_client_options(username)
             break 
         else:
@@ -481,8 +490,8 @@ def show_client_options(username):
     print('  (g) - rate a recipe')
     print('  (h) - view my rated recipes')
     print('  (q) - quit')
+
     ans = input('enter an option: ').lower()
-    print(ans)
     if ans == 'q':
         quit_ui()
     elif ans == 'a':
@@ -493,14 +502,14 @@ def show_client_options(username):
         view_meal_log(username)
     elif ans =='d':
         add_meal(username)
-    elif ans =='d':
+    elif ans =='e':
         view_recipes(username)
     elif ans == 'f':
         add_recipe(username)
     elif ans == 'g':
-        view_user_rating(username)
-    elif ans == 'h':
         add_rating(username)
+    elif ans == 'h':
+        view_user_rating(username)
     else:
         print('your input is not valid. try again!')
         show_client_options(username)
@@ -523,7 +532,6 @@ def show_admin_options():
     print('  (q) - quit')
 
     ans = input('enter an option: ').lower()
-    print(ans)
     if ans == 'q':
         quit_ui()
     elif ans == 'a':
@@ -559,12 +567,12 @@ def log_in(username, password):
         else:
             return (False, is_admin)
 
-    except mysql.connector.Error as err:
+    except Exception as err:
         if DEBUG:
-            sys.stderr(err)
+            print(err)
             sys.exit(1)
         else:
-            sys.stderr('the inputs were invalid! please try again.')
+            print('the inputs were invalid! please try again.')
 
 def quit_ui():
     """
@@ -576,11 +584,11 @@ def quit_ui():
     
     exit()
 
-
 def main():
     """
     Main function for starting things up.
     """
+    global conn
     username = input('username: ')
     password = input('password: ')
     is_authenticated, is_admin = log_in(username, password)
@@ -591,11 +599,11 @@ def main():
         if is_admin:
             show_admin_options()
         else:
+            conn.close()
+            conn = get_conn('appclient', 'clientpw')
             show_client_options(username)
 
 
-
 if __name__ == '__main__':
-    conn = get_conn()
-    show_client_options('lacey_valenta')
-    # main()
+    conn = get_conn('appadmin', 'adminpw')
+    main()
