@@ -1,6 +1,9 @@
 -- CS 121 Winter 2023 Final Project
 -- Setup file for meal tracking app database
 
+-- Enable general log via global query
+SET global general_log = 1;
+
 -- DROP TABLE commands:
 DROP TABLE IF EXISTS ratings;
 DROP TABLE IF EXISTS recipes;
@@ -29,6 +32,26 @@ CREATE TABLE users_info (
 
     -- Boolean for whether the user is an admin or not
     is_admin BOOLEAN NOT NULL
+);
+
+-- This table holds information on user creation and deletion
+-- Whenever user_info table is changed upon insertion of deletion, 
+-- new entry is added to this table
+-- Logs the username, time of change, and change type
+CREATE TABLE users_change_log (
+    -- Log id
+    log_id INT AUTO_INCREMENT PRIMARY KEY,
+    
+    -- Username of user being logged
+    username VARCHAR(20) NOT NULL,
+    
+    -- Time of log
+    log_time DATETIME NOT NULL,
+    
+    -- Type of change to users_info table
+    -- 'Created' for user created, 'Deleted' for user deleted
+    change_type CHAR(7) NOT NULL,
+    CHECK (change_type IN ('Created','Deleted')
 );
 
 -- This table stores information about goals users have set. 
