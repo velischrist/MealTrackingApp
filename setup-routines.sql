@@ -93,6 +93,25 @@ DELIMITER ;
 
 
 -- TRIGGERS
--- Update the average rating of a recipe in the view when a there's a new rating
--- Uses the compute average rating function above
 
+-- Logs user creation from users_info into users_change_log table
+CREATE TRIGGER tr_insert_user
+AFTER INSERT
+ON users_info FOR EACH ROW
+DELIMITER !
+BEGIN
+     INSERT INTO users_change_log (username, log_time, change_type)
+     VALUES (NEW.username, NOW(), 'Created');
+END!
+DELIMITER ;
+
+-- Logs user deletion from users_info into users_change_log table
+CREATE TRIGGER tr_delete_user
+BEFORE DELETE
+ON users_info FOR EACH ROW
+DELIMITER !
+BEGIN
+     INSERT INTO users_change_log (username, log_time, change_type)
+     VALUES (OLD.username, NOW(), 'Deleted')
+END!
+DELIMITER ;
