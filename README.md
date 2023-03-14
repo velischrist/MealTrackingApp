@@ -25,9 +25,9 @@ mysql> source setup.sql;
 
 mysql> source setup-passwords.sql;
 
-mysql> source load-data.sql;
-
 mysql> source setup-routines.sql;
+
+mysql> source load-data.sql;
 
 mysql> source grant-permissions.sql;
 

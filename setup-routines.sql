@@ -95,23 +95,25 @@ DELIMITER ;
 -- TRIGGERS
 
 -- Logs user creation from users_info into users_change_log table
+DROP TRIGGER IF EXISTS tr_insert_user;
+DELIMITER !
 CREATE TRIGGER tr_insert_user
 AFTER INSERT
 ON users_info FOR EACH ROW
-DELIMITER !
 BEGIN
-     INSERT INTO users_change_log (username, log_time, change_type)
-     VALUES (NEW.username, NOW(), 'Created');
-END!
+     INSERT INTO users_change_log (username, change_type)
+     VALUES (NEW.username, 'Created');
+END !
 DELIMITER ;
 
 -- Logs user deletion from users_info into users_change_log table
-CREATE TRIGGER tr_delete_user
-BEFORE DELETE
-ON users_info FOR EACH ROW
+DROP TRIGGER IF EXISTS tr_delete_user;
 DELIMITER !
+CREATE TRIGGER tr_delete_user
+AFTER DELETE
+ON users_info FOR EACH ROW
 BEGIN
-     INSERT INTO users_change_log (username, log_time, change_type)
-     VALUES (OLD.username, NOW(), 'Deleted')
-END!
+     INSERT INTO users_change_log (username, change_type)
+     VALUES (OLD.username, 'Deleted');
+END !
 DELIMITER ;
