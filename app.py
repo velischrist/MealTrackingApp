@@ -397,6 +397,20 @@ def view_goal(username):
 
     return_to_menu_client(username)
 
+def view_user_change_log():
+    """
+    Allows the admin to view usernames of accounts that
+    were recently deleted or created. Results are sorted
+    from most recent to oldest.
+    """
+    sql = 'SELECT username, change_type, log_time \
+    FROM users_change_log \
+    ORDER BY log_time DESC;'
+
+    rows = sql_conn_helper_with_return_values(sql)
+    for (username, change_type, log_time) in rows:
+        print('user %s change_type on %s' %(username, log_time))
+
 def view_recipes(username): 
     """
     Displays recipes with their respective average ratings.
@@ -544,7 +558,7 @@ def show_admin_options():
     elif ans == 'd':
         remove_rating()
     elif ans == 'e':
-        view_user_c()
+        view_user_change_log()
     else:
         print('your input is not valid. try again!')
         show_admin_options()
