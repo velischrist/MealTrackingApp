@@ -528,7 +528,8 @@ def show_admin_options():
     print('  (a) - view all users')
     print('  (b) - remove a user')
     print('  (c) - remove a recipe')
-    print('  (d) - view recently deleted/created users')
+    print('  (d) - remove a rating')
+    print('  (e) - view recently deleted/created users')
     print('  (q) - quit')
 
     ans = input('enter an option: ').lower()
@@ -542,6 +543,8 @@ def show_admin_options():
         remove_recipe()
     elif ans == 'd':
         remove_rating()
+    elif ans == 'e':
+        view_user_c()
     else:
         print('your input is not valid. try again!')
         show_admin_options()
