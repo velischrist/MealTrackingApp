@@ -51,7 +51,7 @@ CREATE TABLE users_change_log (
     -- Type of change to users_info table
     -- 'Created' for user created, 'Deleted' for user deleted
     change_type CHAR(7) NOT NULL,
-    CHECK (change_type IN ('Created','Deleted')
+    CHECK (change_type IN ('Created','Deleted'))
 );
 
 -- This table stores information about goals users have set. 
