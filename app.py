@@ -209,6 +209,7 @@ def view_meal_log(username):
     rows = sql_conn_helper_with_return_values(sql)
 
     meal_dates = list(set([meal_date for (meal_date, ) in rows]))
+    meal_dates.sort()
     print('you have %s dates logged in your meal log: ' % len(meal_dates))
     for (idx, meal_date) in enumerate(meal_dates):
         print(idx+1, '----', meal_date.strftime('%Y-%m-%d'), '(%s)' %meal_date.strftime('%A'))
