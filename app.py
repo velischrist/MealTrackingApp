@@ -528,7 +528,7 @@ def show_admin_options():
     print('  (a) - view all users')
     print('  (b) - remove a user')
     print('  (c) - remove a recipe')
-    print('  (d) - remove a rating')
+    print('  (d) - view recently deleted/created users')
     print('  (q) - quit')
 
     ans = input('enter an option: ').lower()
