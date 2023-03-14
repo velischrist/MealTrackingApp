@@ -409,7 +409,8 @@ def view_user_change_log():
 
     rows = sql_conn_helper_with_return_values(sql)
     for (username, change_type, log_time) in rows:
-        print('user %s change_type on %s' %(username, log_time))
+        print('user %s %s on %s' %(username, change_type, log_time))
+    return_to_menu_admin()
 
 def view_recipes(username): 
     """
